@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import Home from '../scenes/home/home.jsx'
-import FBHome from '../scenes/fbhome/fbhomeContainer.jsx'
+import FBHome from '../scenes/fbhome/FBHomeContainer.jsx'
 import Counter from '../scenes/counter/counter.jsx'
 import About from '../scenes/about/about.jsx'
 import Bio from '../scenes/bio/bio.jsx'

@@ -6,7 +6,7 @@ const config = {
   databaseURL: 'https://think-we-know.firebaseio.com/'
 };
 
-firebase.initializeApp(config);
-const database = firebase.database();
+var weknowApp = firebase.initializeApp(config, "weknowApp");
+const database = weknowApp.database();
 
 export default database;

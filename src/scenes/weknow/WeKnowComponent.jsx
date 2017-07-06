@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, ButtonToolbar, DropdownButton, MenuItem} from 'react-bootstrap';
 import ReactTimestamp from 'react-timestamp'
-import FactList from './FactList4.jsx'
+import FactList from './FactList.jsx'
 import { ListGroup } from "react-bootstrap";
 import "./factList.css"
 

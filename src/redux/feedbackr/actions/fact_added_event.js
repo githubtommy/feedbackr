@@ -1,5 +1,5 @@
-import ActionTypes from './action_types';
-import database from './database';
+import ActionTypes from './actionTypes';
+import database from '../database';
 
 console.log("LOADED: fact_added_event.js");
 

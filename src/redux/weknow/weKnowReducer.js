@@ -2,20 +2,20 @@ import ActionTypes from './actions/action_types';
 
 export function fact(state = {}, action) {
   switch(action.type) {
-    case ActionTypes.GET_INVITE_REQUESTED: {
+    case ActionTypes.GET_FACT_REQUESTED: {
       return Object.assign({}, state, {
         inProgress: true,
         error: '',
         success: ''
       });
     }
-    case ActionTypes.GET_INVITE_REJECTED: {
+    case ActionTypes.GET_FACT_REJECTED: {
       return Object.assign({}, state, {
         inProgress: false,
         error: 'Error in getting fact.',
       });
     }
-    case ActionTypes.GET_INVITE_FULFILLED: {
+    case ActionTypes.GET_FACT_FULFILLED: {
       const { siteTitle, siteSubtitle, facts } = action.fact;
       const newState = Object.assign({}, state, {
         inProgress: false,

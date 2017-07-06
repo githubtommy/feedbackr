@@ -1,5 +1,5 @@
 import React from 'react'
-import FactListRow from './FactListRow.jsx'
+import DomainListRow from './DomainListRow.jsx'
 
 export default class FactList extends React.Component {
 
@@ -9,7 +9,7 @@ export default class FactList extends React.Component {
 		console.log("props:", props);
 		console.log("this.props:", this.props);
     this.state = {
-			facts: this.props.facts,
+			domains: this.props.domains,
 			dog: "uma"
     };
   }
@@ -24,10 +24,10 @@ export default class FactList extends React.Component {
   render() {
     return (
       <div className="container">
-      <p>Factlist Will Go Here</p>
-      {this.state.facts && this.state.facts.length > 0 ? (
+      <p>Domain List Will Go Here</p>
+      {this.state.domains && this.state.domains.length > 0 ? (
 				<ul>
-					{this.state.facts.map((fact, index) => {
+					{this.state.domains.map((fact, index) => {
 						return (
 							<li key={index}>
 								{fact.content}
@@ -36,7 +36,7 @@ export default class FactList extends React.Component {
 					})}
 				</ul>
 			) : null}
-      <FactListRow />
+      <DomainListRow />
       </div>
     );
   }

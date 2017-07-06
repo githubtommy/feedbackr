@@ -1,24 +1,43 @@
-const Row = React.createClass({
+import React from 'react'
+import FactListRow from './FactListRow.jsx'
+
+export default class FactList extends React.Component {
+
+  constructor(props) {
+    super(props);
+		console.log("CONSTRUCTOR");
+		console.log("props:", props);
+		console.log("this.props:", this.props);
+    this.state = {
+			facts: this.props.facts,
+			dog: "uma"
+    };
+  }
+
+  componentDidMount() {
+  }
+
+	handleInputChange(event) {
+		this.setState({ name: event.target.value })
+	}
+
   render() {
     return (
-      <li
-        className="list-group-item"
-        onClick={() => {}}>
-        {this.props.children}
-      </li>
+      <div className="container">
+      <p>Factlist Will Go Here</p>
+      {this.state.facts && this.state.facts.length > 0 ? (
+				<ul>
+					{this.state.facts.map((fact, index) => {
+						return (
+							<li key={index}>
+								{fact.content}
+							</li>
+						);
+					})}
+				</ul>
+			) : null}
+      <FactListRow />
+      </div>
     );
   }
-});
-
-
-import React from 'react'
-
-const FactList = () => (
-  <ListGroup componentClass="ul">
-    <Row>Custom Child 1 </Row>
-    <Row>Custom Child 2 </Row>
-    <Row>Custom Child 3</Row>
-  </ListGroup>
-)
-
-export default FactList
+}

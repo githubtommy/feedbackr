@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { getFact } from '../../redux/weknow/actions/get_fact';
 import { addFact } from '../../redux/weknow/actions/add_fact';
-import { watchFacedAddedEvent } from '../../redux/weknow/actions/fact_added_event';
+import { watchFactAddedEvent } from '../../redux/weknow/actions/fact_added_event';
 import WeKnowComponent from './WeKnowComponent.jsx';
 
 function mapStateToProps(state) {
@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  watchFacedAddedEvent(dispatch);
+  watchFactAddedEvent(dispatch);
   return {
     onGetFact: () => dispatch(getFact()),
     onAddFact: (content) => dispatch(addFact(content))
