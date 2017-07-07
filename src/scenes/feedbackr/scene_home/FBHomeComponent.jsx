@@ -3,6 +3,8 @@ import {Button, ButtonToolbar, DropdownButton, MenuItem} from 'react-bootstrap';
 import ReactTimestamp from 'react-timestamp'
 import DomainList from './DomainList.jsx'
 import { ListGroup } from "react-bootstrap";
+
+import '../css/feedbackr.css'
 //import { setDomainFilter } from '../actions/setDomainFilter'
 
 export default class FBHomeComponent extends React.Component {
@@ -19,8 +21,8 @@ export default class FBHomeComponent extends React.Component {
 
 		console.log("this.state:", this.state);
 
-		this.handleDomainFilterChange = this.handleDomainFilterChange.bind(this);
-		this.renderDomainDropdown = this.handleDomainFilterChange.bind(this);
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleDomainDropdown = this.handleDomainDropdown.bind(this);
   }
 
   componentDidMount() {
@@ -37,23 +39,10 @@ export default class FBHomeComponent extends React.Component {
 		this.setState({ name: event.target.value })
 	}
 
-	handleDomainFilterChange(event) {
-		console.log("handleDomainFilterChange:");
-		console.log("event.target.value:", event.target.value);
-		this.props.setDomainFilter(event.target.value)
+	handleDomainDropdown(key, event) {
+		console.log("handleDomainDropdown:");
+		this.props.setDomainFilter(key)
 	}
-
-	renderDomainDropdown(title, i) {
-  return (
-    <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
-      <MenuItem eventKey="1">Action</MenuItem>
-      <MenuItem eventKey="2">Another action</MenuItem>
-      <MenuItem eventKey="3" active>Active Item</MenuItem>
-      <MenuItem divider />
-      <MenuItem eventKey="4">Separated link</MenuItem>
-    </DropdownButton>
-  );
-}
 
   render() {
 		console.log("--------------------------------------------------");
@@ -89,33 +78,27 @@ export default class FBHomeComponent extends React.Component {
 		}
 
     return (
-      <div className="container">
+      <div>
 
-			{/* domain dropdown */}
+				{/* domain dropdown */}
 
-      {domains && domains.length > 0 ? (
-						<select onChange={this.handleDomainFilterChange} value={domainFilter}>
-							{domains.map((domain, index) => {
-								return (
-									<option key={index} value={domain.name} >{domain.name} </option>
-								);
-							})}
+				{domains && domains.length > 0 ? (
+					<ButtonToolbar className="domainDropdown">
+						<DropdownButton bsStyle="info" title={domainFilter} key="myKey" onSelect={this.handleDomainDropdown}>
 
-						</select>
-          ) : <p>NO DOMAINS FOR DROPDOWN</p>}
+							{domains.map((domain, index) =>
+								{
+									return (
+										<MenuItem eventKey={domain.name} value={domain.name} >{domain.name} </MenuItem>
+									);
+								}
+							)}
 
-			{/* topic dropdown */}
+						</DropdownButton>
+					</ButtonToolbar>
+					) : <p>NO DOMAINS FOR DROPDOWN</p>
+				}
 
-			{topicsFiltered && topicsFiltered.length > 0 ? (
-				<select>
-					{topicsFiltered.map((topic, index) => {
-						return (
-							<option key={index} value={topic.name}>{topic.name}</option>
-						);
-					})}
-
-				</select>
-			) : <p>NO TOPICS FOR DROPDOWN</p>}
 
         <div className="meeting-list">
           <h2>topics</h2>
@@ -171,6 +154,22 @@ export default class FBHomeComponent extends React.Component {
           ) : <p>NO OPINIONS</p>}
 
         </div>
+
+				<div>
+					{topicsFiltered && topicsFiltered.length > 0 ? (
+						<select>
+							{topicsFiltered.map((topic, index) => {
+								return (
+									<option key={index} value={topic.name}>{topic.name}</option>
+								);
+							})}
+
+						</select>
+					) : <p>NO TOPICS FOR DROPDOWN</p>}
+
+				</div>
+
+
 
         <div className="well">
           <h1>XXXXX</h1>

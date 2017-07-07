@@ -13,6 +13,8 @@ const App = () => (
     <header>
 			<br />
       <Link to="/">Home</Link> | <Link to="/fbhome">Feedbackr Home</Link> | <Link to="/counter">Counter</Link> | <Link to="/about">About</Link> | <Link to="/bio">Bio</Link> | <Link to="/lab">Lab</Link> | <Link to="/weknow">Things We Think We Know</Link>
+			<br />
+			<br />
     </header>
 
     <main>
