@@ -1,6 +1,6 @@
 import ActionTypes from './actions/action_types';
 
-export function fact(state = {}, action) {
+export function factsObj(state = {}, action) {
   switch(action.type) {
     case ActionTypes.GET_FACT_REQUESTED: {
       return Object.assign({}, state, {
@@ -10,13 +10,21 @@ export function fact(state = {}, action) {
       });
     }
     case ActionTypes.GET_FACT_REJECTED: {
+			console.log("GET_FACT_REJECTED");
       return Object.assign({}, state, {
         inProgress: false,
         error: 'Error in getting fact.',
       });
     }
-    case ActionTypes.GET_FACT_FULFILLED: {
-      const { siteTitle, siteSubtitle, facts } = action.fact;
+
+		// ----------------------------------------------------------------------------------------------------
+
+		case ActionTypes.GET_FACT_FULFILLED: {
+			console.log("--------------------------------------------------");
+			console.log("GET_FACT_FULFILLED");
+			console.log("action:", action);
+      const { siteTitle, siteSubtitle, facts } = action.data;
+
       const newState = Object.assign({}, state, {
         inProgress: false,
         success: 'Got fact.',
@@ -29,6 +37,9 @@ export function fact(state = {}, action) {
       }
       return newState;
     }
+
+		// ----------------------------------------------------------------------------------------------------
+
     case ActionTypes.ADD_FACT_REQUESTED: {
       return Object.assign({}, state, {
         inProgress: true,

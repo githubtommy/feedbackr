@@ -8,18 +8,22 @@ export default class FBHomeComponent extends React.Component {
 
   constructor() {
     super();
+		console.log("setting initial state");
     this.state = {
 			MAX_INPUT_LENGTH: 150,
 			remainingInputChars: 150,
       name: '',
 			inputValue: ''
     };
+
+		console.log("this.state:", this.state);
+
+		this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
 		console.log("componentDidMount");
-    this.props.onGetDomain();
-		this.props.onGetTopic();
+    this.props.onGetFeedback();
   }
 
 	// onChange={e => this.setState({ name: e.target.value })}
@@ -30,50 +34,81 @@ export default class FBHomeComponent extends React.Component {
 		this.setState({ name: event.target.value })
 	}
 
-  render() {
-		console.log("FBHomeComponent: this.props:", this.props);
-		console.log("this.state:", this.state);
-		console.log("this.props:", this.props);
-		const domains = this.props.domains;
-		const topics= this.props.topics;
-		const users = this.props.users;
-		const opinions = this.props.opinions;
+	handleChange(event) {
+		console.log("handleChange:");
+	}
 
-    //const { domains, topics, users, opinions } = this.props.facts;
-//		const domains = [
-//			{name: "Domain1", date: "1999"},
-//			{name: "Domain2", date: "1999"}
-//		]
-//		const opinions = [
-//			{body: "This is an opinion", date: "1999", topic: "fakeTopic", user: "tommyboy"}
-//		]
+  render() {
+		console.log("--------------------------------------------------");
+		console.log("FBHomeComponent: this.props:", this.props);
+		let { domains, topics, users, opinions } = this.props.feedbackObj;
+
+		let topicsFiltered = [];
+		let domainDefault = "TV Shows";
+
+
+		if (domains && domainDefault && topics) {
+			let domain0 = domains[0].name;
+			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
+
+			topicsFiltered = topics.filter(function (topic) {
+				console.log("- topic:", topic);
+				return topic.domain == domainDefault;
+			});
+			console.log("domainDefault:", domainDefault);
+			console.log("topicsFiltered:", topicsFiltered);
+			console.log("domain0:", domain0);
+		}
+
+		console.log("domains:", domains);
+		console.log("topics:", topics);
+		console.log("topicsFiltered:", topicsFiltered);
+
+		if (this.props.feedbackObj.feedback) {
+			console.log("YES, feedback");
+		}
+
+//		if (this.props.feedback && this.props.feedback.feedback && this.props.feedback.feedback.domains) {
+//			console.log("this.props.feedback.feedback.domains:", this.props.feedback.feedback.domains);
+//
+//			domains = this.props.feedback.feedback.domains
+//			topics = this.props.feedback.feedback.topics
+//			users = this.props.feedback.feedback.users
+//			opinions = this.props.feedback.feedback.opinions
+//		}
+
+
+
     return (
       <div className="container">
-
-        <div className="meeting-list">
-          <h2>domains</h2>
-					{domains && domains.length > 0 ? (
-						<ListGroup componentClass="ul">
+      <h1>DOMAIN DROPDOWN</h1>
+      {domains && domains.length > 0 ? (
+						<select>
 							{domains.map((domain, index) => {
 								return (
-									<li key={index} className="list-group-item">
-										<p className="factList content">{domain.name}</p>
-										<p className="factList ago"><ReactTimestamp time={domain.date} format="ago" /> ago</p>
-									</li>
+									<option key={index} value={domain.name}>{domain.name}</option>
 								);
 							})}
 
-						</ListGroup>
-          ) : <p>NO DOMAINS</p>}
+						</select>
+          ) : <p>NO DOMAINS FOR DROPDOWN</p>}
 
-        </div>
+			{topicsFiltered && topicsFiltered.length > 0 ? (
+				<select>
+					{topicsFiltered.map((topic, index) => {
+						return (
+							<option key={index} value={topic.name}>{topic.name}</option>
+						);
+					})}
 
+				</select>
+			) : <p>NO TOPICS FOR DROPDOWN</p>}
 
         <div className="meeting-list">
           <h2>topics</h2>
-					{topics && topics.length > 0 ? (
+					{topicsFiltered && topicsFiltered.length > 0 ? (
 						<ListGroup componentClass="ul">
-							{topics.map((topic, index) => {
+							{topicsFiltered.map((topic, index) => {
 								return (
 									<li key={index} className="list-group-item">
 										<p className="factList content">{topic.name}</p>
@@ -83,7 +118,26 @@ export default class FBHomeComponent extends React.Component {
 							})}
 
 						</ListGroup>
-          ) : <p>NO DOMAINS</p>}
+          ) : <p>NO TOPICS</p>}
+
+        </div>
+
+
+        <div className="meeting-list">
+          <h2>users</h2>
+					{users && users.length > 0 ? (
+						<ListGroup componentClass="ul">
+							{users.map((user, index) => {
+								return (
+									<li key={index} className="list-group-item">
+										<p className="factList content">{user.name}</p>
+										<p className="factList ago"><ReactTimestamp time={user.date} format="ago" /> ago</p>
+									</li>
+								);
+							})}
+
+						</ListGroup>
+          ) : <p>NO USERS</p>}
 
         </div>
 
@@ -101,30 +155,9 @@ export default class FBHomeComponent extends React.Component {
 							})}
 
 						</ListGroup>
-          ) : <p>NO DOMAINS</p>}
+          ) : <p>NO OPINIONS</p>}
 
         </div>
-
-       <div className="meeting-list">
-          <h2>opinions </h2>
-					{opinions && opinions.length > 0 ? (
-						<ListGroup componentClass="ul">
-							{opinions.map((fact, index) => {
-								return (
-									<li key={index} className="list-group-item">
-										<p className="factList content">{fact.content}</p>
-										<p className="factList ago"><ReactTimestamp time={fact.date} format="ago" /> ago</p>
-									</li>
-								);
-							})}
-
-						</ListGroup>
-          ) : null}
-
-        </div>
-
-
-
 
         <div className="well">
           <h1>XXXXX</h1>

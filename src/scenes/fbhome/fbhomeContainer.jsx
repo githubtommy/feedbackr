@@ -1,24 +1,20 @@
 import { connect } from 'react-redux';
-import { getDomain } from '../../redux/feedbackr/actions/get_domain';
-import { getTopic } from '../../redux/feedbackr/actions/get_topic';
+import { getFeedback } from '../../redux/feedbackr/actions/get_feedback';
 import { addDomain } from '../../redux/feedbackr/actions/add_domain';
 import { watchEventDomainAdded } from '../../redux/feedbackr/actions/event_domain_added';
 import FBHomeComponent from './FBHomeComponent';
 
 function mapStateToProps(state) {
+	console.log("FBHomeContainer: mapStateToProps: ", state);
   return {
-    domains: state.domains,
-		topics: state.topics,
-		users: state.users,
-		opinions: state.opinions
+		feedbackObj: state.feedbackObj
   };
 }
 
 function mapDispatchToProps(dispatch) {
   watchEventDomainAdded(dispatch);
   return {
-    onGetDomain: () => dispatch(getDomain()),
-    onGetTopic: () => dispatch(getTopic()),
+    onGetFeedback: () => dispatch(getFeedback()),
     onAddDomain: (value) => dispatch(addDomain(value))
   };
 }

@@ -30,10 +30,15 @@ export default class WeKnowComponent extends React.Component {
 	}
 
   render() {
+		console.log("--------------------------------------------------");
+		console.log("WeKnowComponent.render");
 		console.log("this.props:", this.props);
-    const { siteTitle, siteSubtitle, factCount, facts } = this.props.fact;
+    const { siteTitle, siteSubtitle, factCount, facts } = this.props.factsObj
+		console.log("facts:", facts);
+		console.log("siteTitle:", siteTitle);
     return (
       <div className="container">
+       	<p>{siteTitle}</p>
         <div className="well">
           <h1>{siteTitle}</h1>
           <p>{siteSubtitle}</p>

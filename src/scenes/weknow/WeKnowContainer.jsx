@@ -5,8 +5,9 @@ import { watchFactAddedEvent } from '../../redux/weknow/actions/fact_added_event
 import WeKnowComponent from './WeKnowComponent.jsx';
 
 function mapStateToProps(state) {
+	console.log("FBHomeContainer: mapStateToProps: ", state);
   return {
-    fact: state.fact
+    factsObj: state.factsObj
   };
 }
 

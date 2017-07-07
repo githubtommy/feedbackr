@@ -8,8 +8,9 @@ export function getFact() {
   return dispatch => {
     dispatch(getFactRequestedAction());
     return database.ref('/').once('value', snap => {
-      const fact = snap.val();
-      dispatch(getFactFulfilledAction(fact))
+      const data = snap.val();
+			console.log("data:", data);
+      dispatch(getFactFulfilledAction(data))
     })
     .catch((error) => {
       console.log(error);
@@ -21,19 +22,19 @@ export function getFact() {
 
 function getFactRequestedAction() {
   return {
-    type: ActionTypes.GET_INVITE_REQUESTED
+    type: ActionTypes.GET_FACT_REQUESTED
   };
 }
 
 function getFactRejectedAction() {
   return {
-    type: ActionTypes.GET_INVITE_REJECTED
+    type: ActionTypes.GET_FACT_REJECTED
   }
 }
 
-function getFactFulfilledAction(fact) {
+function getFactFulfilledAction(data) {
   return {
-    type: ActionTypes.GET_INVITE_FULFILLED,
-    fact
+    type: ActionTypes.GET_FACT_FULFILLED,
+    data
   };
 }
