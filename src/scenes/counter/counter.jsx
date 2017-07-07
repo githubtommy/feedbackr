@@ -7,7 +7,7 @@ import {
   incrementAsync,
   decrement,
   decrementAsync
-} from '../../redux/counter/counterReducer.js'
+} from './counterReducer.js'
 
 import { Button } from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
