@@ -1,5 +1,5 @@
 import ActionTypes from './actionTypes';
-import database from '../database';
+import database from '../data/database';
 
 console.log("LOADED: DOMAIN_added_event.js");
 

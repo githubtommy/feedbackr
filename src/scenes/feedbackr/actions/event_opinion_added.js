@@ -1,5 +1,5 @@
 import ActionTypes from './actionTypes';
-import database from '../database';
+import database from '../data/database';
 
 console.log("LOADED: event_opinion_added.js");
 

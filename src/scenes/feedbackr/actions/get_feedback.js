@@ -1,5 +1,5 @@
 import ActionTypes from './actionTypes.js';
-import database from '../database';
+import database from '../data/database';
 
 export function getFeedback() {
 	console.log("getFeedback");

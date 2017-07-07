@@ -1,4 +1,4 @@
-import ActionTypes from './actions/actionTypes';
+import ActionTypes from '../actions/actionTypes';
 
 export function feedbackObj(state = {}, action) {
   switch(action.type) {
@@ -15,9 +15,6 @@ export function feedbackObj(state = {}, action) {
         error: 'Error in getting feedback',
       });
     }
-
-
-
 
     case ActionTypes.GET_FEEDBACK_FULFILLED: {
 			console.log("--------------------------------------------------");

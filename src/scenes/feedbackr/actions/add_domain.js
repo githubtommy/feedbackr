@@ -1,5 +1,5 @@
 import ActionTypes from './actionTypes';
-import database from '../database';
+import database from '../data/database';
 import firebase from 'firebase'
 
 console.log("LOADED: add_domain.js");

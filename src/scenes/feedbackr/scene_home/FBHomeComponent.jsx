@@ -3,6 +3,7 @@ import {Button, ButtonToolbar, DropdownButton, MenuItem} from 'react-bootstrap';
 import ReactTimestamp from 'react-timestamp'
 import DomainList from './DomainList.jsx'
 import { ListGroup } from "react-bootstrap";
+//import { setDomainFilter } from '../actions/setDomainFilter'
 
 export default class FBHomeComponent extends React.Component {
 
@@ -18,12 +19,14 @@ export default class FBHomeComponent extends React.Component {
 
 		console.log("this.state:", this.state);
 
-		this.handleChange = this.handleChange.bind(this);
+		this.handleDomainFilterChange = this.handleDomainFilterChange.bind(this);
+		this.renderDomainDropdown = this.handleDomainFilterChange.bind(this);
   }
 
   componentDidMount() {
 		console.log("componentDidMount");
-    this.props.onGetFeedback();
+		this.props.setDomainFilter();
+    this.props.getFeedback();
   }
 
 	// onChange={e => this.setState({ name: e.target.value })}
@@ -34,28 +37,45 @@ export default class FBHomeComponent extends React.Component {
 		this.setState({ name: event.target.value })
 	}
 
-	handleChange(event) {
-		console.log("handleChange:");
+	handleDomainFilterChange(event) {
+		console.log("handleDomainFilterChange:");
+		console.log("event.target.value:", event.target.value);
+		this.props.setDomainFilter(event.target.value)
 	}
+
+	renderDomainDropdown(title, i) {
+  return (
+    <DropdownButton bsStyle={title.toLowerCase()} title={title} key={i} id={`dropdown-basic-${i}`}>
+      <MenuItem eventKey="1">Action</MenuItem>
+      <MenuItem eventKey="2">Another action</MenuItem>
+      <MenuItem eventKey="3" active>Active Item</MenuItem>
+      <MenuItem divider />
+      <MenuItem eventKey="4">Separated link</MenuItem>
+    </DropdownButton>
+  );
+}
 
   render() {
 		console.log("--------------------------------------------------");
 		console.log("FBHomeComponent: this.props:", this.props);
+		console.log("this.props.fbHomeObj:", this.props.fbHomeObj);
+		console.log("this.props.domainFilterObj:", this.props.domainFilterObj);
 		let { domains, topics, users, opinions } = this.props.feedbackObj;
+		let { domainFilter } = this.props.domainFilterObj;
 
 		let topicsFiltered = [];
-		let domainDefault = "TV Shows";
+
+		console.log("domainFilter:", domainFilter);
 
 
-		if (domains && domainDefault && topics) {
+		if (domains && topics) {
 			let domain0 = domains[0].name;
 			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
 			topicsFiltered = topics.filter(function (topic) {
 				console.log("- topic:", topic);
-				return topic.domain == domainDefault;
+				return topic.domain == domainFilter;
 			});
-			console.log("domainDefault:", domainDefault);
 			console.log("topicsFiltered:", topicsFiltered);
 			console.log("domain0:", domain0);
 		}
@@ -68,30 +88,23 @@ export default class FBHomeComponent extends React.Component {
 			console.log("YES, feedback");
 		}
 
-//		if (this.props.feedback && this.props.feedback.feedback && this.props.feedback.feedback.domains) {
-//			console.log("this.props.feedback.feedback.domains:", this.props.feedback.feedback.domains);
-//
-//			domains = this.props.feedback.feedback.domains
-//			topics = this.props.feedback.feedback.topics
-//			users = this.props.feedback.feedback.users
-//			opinions = this.props.feedback.feedback.opinions
-//		}
-
-
-
     return (
       <div className="container">
-      <h1>DOMAIN DROPDOWN</h1>
+
+			{/* domain dropdown */}
+
       {domains && domains.length > 0 ? (
-						<select>
+						<select onChange={this.handleDomainFilterChange} value={domainFilter}>
 							{domains.map((domain, index) => {
 								return (
-									<option key={index} value={domain.name}>{domain.name}</option>
+									<option key={index} value={domain.name} >{domain.name} </option>
 								);
 							})}
 
 						</select>
           ) : <p>NO DOMAINS FOR DROPDOWN</p>}
+
+			{/* topic dropdown */}
 
 			{topicsFiltered && topicsFiltered.length > 0 ? (
 				<select>
