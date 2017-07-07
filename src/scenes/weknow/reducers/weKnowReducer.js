@@ -1,4 +1,4 @@
-import ActionTypes from './actions/action_types';
+import ActionTypes from '../actions/action_types';
 
 export function factsObj(state = {}, action) {
   switch(action.type) {

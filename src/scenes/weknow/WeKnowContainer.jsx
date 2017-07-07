@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { getFact } from '../../redux/weknow/actions/get_fact';
-import { addFact } from '../../redux/weknow/actions/add_fact';
-import { watchFactAddedEvent } from '../../redux/weknow/actions/fact_added_event';
+import { getFact } from './actions/get_fact';
+import { addFact } from './actions/add_fact';
+import { watchFactAddedEvent } from './actions/fact_added_event';
 import WeKnowComponent from './WeKnowComponent.jsx';
 
 function mapStateToProps(state) {
