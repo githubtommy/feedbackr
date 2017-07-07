@@ -7,6 +7,7 @@ const initialState = {
   name: nameCur
 }
 
+// Helper
 function getRandom() {
 	let nameNew = "";
 	while (nameNew === "" || nameNew === nameCur) {
@@ -14,6 +15,15 @@ function getRandom() {
 	}
 	nameCur = nameNew;
 	return nameCur;
+}
+
+// Action
+export const getRandomName = () => {
+  return dispatch => {
+    dispatch({
+      type: GET_RANDOM_NAME
+    })
+  }
 }
 
 
@@ -28,13 +38,5 @@ export default (state = initialState, action) => {
 
     default:
       return state
-  }
-}
-
-export const getRandomName = () => {
-  return dispatch => {
-    dispatch({
-      type: GET_RANDOM_NAME
-    })
   }
 }

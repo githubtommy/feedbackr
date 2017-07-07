@@ -2,7 +2,7 @@ import React from 'react'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getRandomName } from '../../redux/randomName/randomNameReducer.js'
+import { getRandomName } from './randomName/actions/getRandomName.js'
 import { Button } from 'react-bootstrap';
 
 const Lab = props => (
@@ -13,8 +13,15 @@ const Lab = props => (
   </div>
 )
 
+//function mapStateToProps(state) {
+//	console.log("LAB: mapStateToProps: ", state);
+//  return {
+//		name: state.randomNameObj.name
+//  };
+//}
+
 const mapStateToProps = state => ({
-  name: state.randomName.name
+  name: state.randomNameObj.name
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
