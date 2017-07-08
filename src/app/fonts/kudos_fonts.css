@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Avenir Next';
+	src: url("/kudos_fonts/AvenirNextLTPro-Regular.eot?#iefix") format("embedded-opentype"), url("/kudos_fonts/AvenirNextLTPro-Regular.woff") format("woff"), url("/kudos_fonts/AvenirNextLTPro-Regular.ttf") format("truetype"), url("/kudos_fonts/AvenirNextLTPro-Regular.svg#AvenirNextLTPro-Regular") format("svg");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Avenir Next';
+	src: url("/kudos_fonts/avenirnext-bold.eot?#iefix") format("embedded-opentype"), url("/kudos_fonts/avenirnext-bold.otf") format("opentype"), url("/kudos_fonts/avenirnext-bold.woff") format("woff"), url("/kudos_fonts/avenirnext-bold.ttf") format("truetype"), url("/kudos_fonts/avenirnext-bold.svg#CircularStd-Book") format("svg");
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Circular';
+	src: url("/kudos_fonts/CircularStd-Book.eot?#iefix") format("embedded-opentype"), url("/kudos_fonts/CircularStd-Book.otf") format("opentype"), url("/kudos_fonts/CircularStd-Book.woff") format("woff"), url("/kudos_fonts/CircularStd-Book.ttf") format("truetype"), url("/kudos_fonts/CircularStd-Book.svg#CircularStd-Book") format("svg");
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Circular';
+	src: url("/kudos_fonts/CircularStd-Bold.eot?#iefix") format("embedded-opentype"), url("/kudos_fonts/CircularStd-Bold.otf") format("opentype"), url("/kudos_fonts/CircularStd-Bold.woff") format("woff"), url("/kudos_fonts/CircularStd-Bold.ttf") format("truetype"), url("/kudos_fonts/CircularStd-Bold.svg#CircularStd-Bold") format("svg");
+	font-weight: 700;
+	font-style: normal;
+}

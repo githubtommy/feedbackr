@@ -10,7 +10,6 @@ import {
 } from './counterReducer.js'
 
 import { Button } from 'react-bootstrap';
-import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Counter = props => (
@@ -31,7 +30,6 @@ const Counter = props => (
     <br />
     <br />
     <br />
-    <RaisedButton label="This is a do-nothing Material UI button" />
   </div>
 )
 

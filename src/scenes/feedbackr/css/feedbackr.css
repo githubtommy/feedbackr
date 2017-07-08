@@ -1,3 +1,53 @@
 .domainDropdown .btn{
     width:200px;
 }
+
+.pillify {
+    font-family: "Noto Sans", sans-serif;
+    font-size: .8em;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding: .5em 1.20em;
+    color: white;
+    border-radius: 8em;
+    text-align: center;
+    background: #818181;
+    min-width: 3em;
+    margin: 0 0.6em;
+}
+
+#opinionList {
+	font-size: 18px;
+	color: #3e3e3e;
+	line-height: 16px;
+	font-family: "Helvetica Neue";
+	font-weight: 300;
+}
+
+#opinionList .footer {
+	font-size: 14px;
+	background-color: azure;
+}
+
+#opinionList .footer .topic {
+	font-weight: 500;
+	color: indianred;
+}
+
+#opinionList .typePill {
+    font-family: "Noto Sans", sans-serif;
+    font-size: .8em;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding: .3em 0.8em;
+    color: white;
+    border-radius: 8em;
+    text-align: center;
+    background: #818181;
+    min-width: 3em;
+    margin: 0 0.6em;
+}

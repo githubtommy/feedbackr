@@ -1,0 +1,43 @@
+.topbar-rightGroup {
+	color: red;
+	align-content: stretch;
+}
+
+.topbar-leftGroup {
+	vertical-align: baseline;
+}
+
+.pillButton {
+	align-content: stretch;
+	font-family: "Helvetica Neue", "Noto Sans", sans-serif;
+	font-size: .8em;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	padding: .1em .6em;
+	border-style: solid;
+	border-color: #44b6f2;
+	border-width: 1px;
+	border-radius: 15em;
+	text-align: center;
+	min-width: 3em;
+	float: right;
+	margin: 0 0.2em;
+}
+
+.kudoPillSecret {
+    font-family: "Noto Sans", sans-serif;
+    font-size: .8em;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding: .5em 1.20em;
+    color: white;
+    border-radius: 8em;
+    text-align: center;
+    background: #818181;
+    min-width: 3em;
+    margin: 0 0.6em;
+}

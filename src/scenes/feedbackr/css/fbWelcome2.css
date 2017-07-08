@@ -1,0 +1,80 @@
+.opinionList {
+	font-size: 18px;
+	color: #3e3e3e;
+	line-height: 16px;
+	font-family: "Helvetica Neue";
+	font-weight: 300;
+}
+
+
+// Customize the material-ui list item
+
+.opinionListListItem {
+	background-color: red !important;
+}
+
+
+/* primary text div */
+.opinionListListItem > div > div > div {
+	padding-top: 10px;
+	text-overflow: ellipsis !important;
+	white-space: nowrap;
+	overflow: hidden !important;
+	max-height: 80px !important;
+	font-size: 18px;
+}
+
+.opinionListListItemDivider {
+	border-top: 1pt gray solid;
+	margin-left: 20px;
+}
+
+
+ListItem {
+	border-top: 1pt black solid !important;
+	color: red !important;
+}
+
+
+.opinionListListItemFooter {
+	margin-left: 20px;
+	font-size: 12px;
+	height: 20px;
+	font-weight: 500;
+	color: gray;
+	padding: 0px;
+}
+
+.opinionList-footer-left {
+	float: left;
+
+}
+
+.opinionList-footer-middle {
+}
+
+.opinionList-footer-right {
+	float: right;
+}
+
+.opinionListFooterInner {
+	  position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
+
+.opinionList .typePill {
+    font-family: "Noto Sans", sans-serif;
+    font-size: .8em;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding: .3em 0.8em;
+    color: white;
+    border-radius: 8em;
+    text-align: center;
+    background: #818181;
+    min-width: 3em;
+    margin: 0 0.6em;
+}
