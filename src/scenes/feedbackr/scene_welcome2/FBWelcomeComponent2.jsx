@@ -6,16 +6,25 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // material-ui
 import {List, ListItem} from 'material-ui/List';
+import {Avatar} from 'material-ui'
 
 import Divider from 'material-ui/Divider';
 import IconChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
-
+import IconMoreVert from 'material-ui-icons/MoreVert'
+import IconMusicNote from 'material-ui-icons/MusicNote'
+import IconFace from 'material-ui-icons/TagFaces'
+import IconThumbDown from 'material-ui-icons/ThumbDown'
+import ActionGrade from 'material-ui/svg-icons/action/grade';
 
 //import '../css/feedbackr.css'
 import '../css/fbWelcome2.css'
+import '../css/listMod.css'
 import '../../../app/pills.css'
 import '../../../app/fonts/kudos_fonts.css'
 //import { setDomainFilter } from '../actions/setDomainFilter'
+
+// colors
+import {pinkA200, blue600, red600, transparent} from 'material-ui/styles/colors';
 
 export default class FBWelcomeComponent2 extends React.Component {
 
@@ -41,7 +50,6 @@ export default class FBWelcomeComponent2 extends React.Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleDomainDropdown = this.handleDomainDropdown.bind(this);
   }
-
 
 
   componentDidMount() {
@@ -82,28 +90,60 @@ export default class FBWelcomeComponent2 extends React.Component {
     return (
       <div>
 
+        <div>
+
+					<List>
+						<ListItem
+							primaryText={this.fakeOpinion1}
+							leftIcon={<IconFace color={blue600} />}
+							secondaryText={
+								<div className="opinionListListItemFooter">
+									<span className="footerItem left">Apple iPhone 5s</span>
+									<span className="footerItem center">6 days ago</span>
+									<span className="footerItem right">Brentley Smith</span>
+								</div>
+								}
+						/>
+						<ListItem
+							primaryText={this.fakeOpinion2}
+							leftIcon={<IconThumbDown color={blue600} />}
+							secondaryText={
+								<div className="opinionListListItemFooter">
+									<span className="footerItem left">Apple iPhone 5s</span>
+									<span className="footerItem center">6 days ago</span>
+									<span className="footerItem right">Brentley Smith</span>
+								</div>
+								}
+						/>
+					</List>
+
+        </div>
 
         <div className="opinionList">
 					<List>
 						<div className="opinionListListItemDivider"></div>
 						<ListItem
 							className="opinionListListItem"
+							leftIcon={<ActionGrade color={pinkA200} />}
 							primaryText={this.fakeOpinion1}
+							secondaryText={
+								<div className="opinionListListItemFooter">
+									<span className="footerItem left">Apple iPhone 5s</span>
+									<span className="footerItem center">suggestion</span>
+									<span className="footerItem right">6 days ago</span>
+								</div>
+							}
 							rightIcon={<IconChevronRight />} />
-						<div className="opinionListListItemFooter">
-							<span>Apple iPhone 5s</span>
-							<span>suggestion</span>
-							<span>6 days ago</span>
-						</div>
+
 						<div className="opinionListListItemDivider"></div>
 						<ListItem
 							className="opinionListListItem"
 							primaryText={this.fakeOpinion1}
 							rightIcon={<IconChevronRight />} />
 						<div>
-							<span>Apple iPhone 5s</span>
-							<span>suggestion</span>
-							<span>6 days ago</span>
+							<div className="footerLeft">Apple iPhone 5s</div>
+							<div className="footerMiddle">suggestion</div>
+							<div className="footerRight">6 days ago</div>
 						</div>
 
 					</List>
@@ -112,6 +152,7 @@ export default class FBWelcomeComponent2 extends React.Component {
       	<hr />
       	Bootstrap stuff below
       	<hr />
+
 
 				<br />
 				<br />

@@ -14,36 +14,66 @@
 }
 
 
+/* parent of primary text div */
+.opinionListListItem > div > div {
+	padding: 10px 56px 30px 16px !important;
+}
+
 /* primary text div */
 .opinionListListItem > div > div > div {
-	padding-top: 10px;
-	text-overflow: ellipsis !important;
-	white-space: nowrap;
+	padding-top: 0px;
+/*	text-overflow: ellipsis !important;*/
+/*	white-space: nowrap;*/
 	overflow: hidden !important;
-	max-height: 80px !important;
-	font-size: 18px;
+	height: 48px;
+	max-height: 100px !important;
+	font-size: 12px;
+	line-height: 16px;
 }
+
+/* secondary text div */s
+.opinionListListItem > div > div:nth-child(3) {
+	margin: 0px 0px 0px !important;
+	background-color: purple;
+}
+
+
+.opinionListListItemFooter {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	padding: 0 !important;
+	margin-left: 20px;
+	font-size: 12px;
+	height: 32px !important;
+	width: 100%;
+	font-weight: 500;
+	padding: 0px;
+}
+
+.footerItem {
+	width: 150px;
+	text-align: center;
+	padding: 5px 0 2px 0;
+}
+
+.footerItem.left {
+	text-align: left;
+}
+.footerItem.center {
+	text-align: center;
+}
+.footerItem.right {
+	text-align: right;
+}
+
 
 .opinionListListItemDivider {
 	border-top: 1pt gray solid;
 	margin-left: 20px;
 }
 
-
-ListItem {
-	border-top: 1pt black solid !important;
-	color: red !important;
-}
-
-
-.opinionListListItemFooter {
-	margin-left: 20px;
-	font-size: 12px;
-	height: 20px;
-	font-weight: 500;
-	color: gray;
-	padding: 0px;
-}
 
 .opinionList-footer-left {
 	float: left;
