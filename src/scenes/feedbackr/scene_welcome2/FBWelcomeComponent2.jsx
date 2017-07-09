@@ -34,8 +34,6 @@ import '../../../app/pills.css'
 import '../../../app/fonts/kudos_fonts.css'
 //import { setDomainFilter } from '../actions/setDomainFilter'
 
-// For tap events, such as right-icon menu
-import InjectTapEventPlugin from 'react-tap-event-plugin'
 
 export default class FBWelcomeComponent2 extends React.Component {
 
@@ -61,7 +59,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 		this.props.setDomainFilter();
     this.props.getFeedback();
 		console.log("WILL INJESCT TAP EVENT PLUGIN");
-		InjectTapEventPlugin();
+;
   }
 
 	handleTopicTap(value) {

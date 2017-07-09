@@ -22,9 +22,13 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 //import MyAwesomeReactComponent from './MyAwesomeReactComponent';
 
 import { Button } from 'react-bootstrap';
+// For tap events, such as right-icon menu
+import InjectTapEventPlugin from 'react-tap-event-plugin'
 
 
 const target = document.querySelector('#root')
+
+InjectTapEventPlugin()
 
 render(
 	<MuiThemeProvider>
