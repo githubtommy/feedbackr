@@ -76,15 +76,12 @@ export default class FBWelcomeComponent2 extends React.Component {
 		this.setState({ name: event.target.value })
 	}
 
-	handleDomainDropdown(key, event) {
-		this.props.setDomainFilter(key)
-	}
-
-	handleDropDownChange(event, index, value) {
-		console.log("handleDropDownChange: ");
+	handleDomainDropdown(event, index, value) {
+		console.log("handleDomainDropdown: ");
 		console.log("event:", event);
 		console.log("index:", index);
 		console.log("value:", value);
+		console.log("this:", this);
 	}
 
   render() {
@@ -94,8 +91,9 @@ export default class FBWelcomeComponent2 extends React.Component {
 		let { domainFilter } = this.props.domainFilterObj;
 
 		let topicsFiltered = [];
+		let opinionsFIltered = [];
 
-		if (domains && topics) {
+		if (domains && topics && opinions) {
 			let domain0 = domains[0].name;
 			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
@@ -110,7 +108,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 				touch={true}
 			>
 				<IconMoreVert color={grey400} />
-			</IconButton>
+				</IconButton>
 		)
 
 		const rightIconMenu = (
@@ -121,21 +119,25 @@ export default class FBWelcomeComponent2 extends React.Component {
 			</IconMenu>
 		)
 
-
     return (
       <div id="returnBlock">
 
+        {/* ----- domain dropdown ----- */}
 
-					<DropDownMenu value={3} onChange={this.handleDropDownChange}  >
-						<MenuItem value={1} primaryText="Never"/>
-						<MenuItem value={2} primaryText="EveryNight" />
-						<MenuItem value={3} primaryText="Weeknights" />
-						<MenuItem value={4} primaryText="Weekends" />
-						<MenuItem value={5} primaryText="Weekly" />
+				{domains && domains.length > 0 ? (
+					<DropDownMenu value={domainFilter} onChange={this.handleDomainDropdown}  >
+						{domains.map((domain, index) =>
+							{
+								return (
+									<MenuItem value={domain.name} primaryText={domain.name} />
+								);
+							}
+						)}
 					</DropDownMenu>
+					) : <p>NO DOMAINS FOR DROPDOWN</p>
+				}
 
-        {/* ----- material dynamic ----- */}
-
+        {/* ----- opinion list ----- */}
 
         <div>
 					<h2>Opinions</h2>
