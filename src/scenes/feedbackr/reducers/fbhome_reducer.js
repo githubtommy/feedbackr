@@ -1,8 +1,8 @@
 import ActionTypes from '../actions/actionTypes';
 
 const initialState = {
-	domainFilter: "Consumer Products",
-	topicFilter: "ipad"
+	domainFilter: "all",
+	topicFilter: "all"
 }
 
 
@@ -36,7 +36,7 @@ export function topicFilterObj (state = initialState, action) {
 			console.log("action:", action);
 			return {
 				...state,
-				domainFilter: action.topicId ? action.topicId : state.topicId
+				topicFilter: action.topicId ? action.topicId : state.topicId
 			}
     }
 

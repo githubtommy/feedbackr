@@ -45,7 +45,6 @@ export default class FBWelcomeComponent2 extends React.Component {
 			remainingInputChars: 150,
       name: '',
 			inputValue: '',
-			domainFilter: 'Consumer Products',
 			dog: "uma the dog"
     };
 
@@ -53,15 +52,15 @@ export default class FBWelcomeComponent2 extends React.Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleDomainDropdown = this.handleDomainDropdown.bind(this);
-		//this.handleTopicTap = this.handleTopicTap.bind(this);
+		this.handleTopicDropdown = this.handleTopicDropdown.bind(this);
   }
 
 
   componentDidMount() {
 		console.log("componentDidMount");
-		//this.props.setDomainFilter();
+//		/this.props.setDomainFilter();
 		// TODO: improve how we set this default domainFilter state
-    this.props.getFeedback("Consumer Produts");
+    this.props.getFeedback();
   }
 
 	handleTopicTap(value) {
@@ -83,6 +82,16 @@ export default class FBWelcomeComponent2 extends React.Component {
 		console.log("index:", index);
 		console.log("value:", value);
 		console.log("this:", this);
+		this.props.setDomainFilter(value);
+	}
+
+	handleTopicDropdown(event, index, value) {
+		console.log("handleTopicDropdown: ");
+		console.log("event:", event);
+		console.log("index:", index);
+		console.log("value:", value);
+		console.log("this:", this);
+		this.props.setTopicFilter(value);
 	}
 
   render() {
@@ -104,13 +113,21 @@ export default class FBWelcomeComponent2 extends React.Component {
 			let domain0 = domains[0].name;
 			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
-			topicsFiltered = topics.filter(function (topic) {
-				return topic.domain == domainFilter;
-			});
+			if (domainFilter === "all") {
+				topicsFiltered = topics
+			} else {
+				topicsFiltered = topics.filter(function (topic) {
+					return topic.domain == domainFilter;
+				})
+			}
 
-			opinionsFiltered = opinions.filter(function (opinion) {
-				return opinion.topic == topicFilter;
-			});
+			if (topicFilter === "all") {
+				opinionsFiltered = opinions
+			} else {
+				opinionsFiltered = opinions.filter(function (opinion) {
+					return opinion.topic == topicFilter;
+				})
+			}
 		}
 
 
@@ -133,10 +150,11 @@ export default class FBWelcomeComponent2 extends React.Component {
     return (
       <div id="returnBlock">
 
-        {/* ----- domain dropdown ----- */}
-
+        {/* ----- domain filter dropdown ----- */}
+				Domain:
 				{domains && domains.length > 0 ? (
 					<DropDownMenu value={domainFilter} onChange={this.handleDomainDropdown}  >
+						<MenuItem value={"all"} primaryText={"all"} />
 						{domains.map((domain, index) =>
 							{
 								return (
@@ -148,10 +166,28 @@ export default class FBWelcomeComponent2 extends React.Component {
 					) : <p>NO DOMAINS FOR DROPDOWN</p>
 				}
 
+        {/* ----- topic filter dropdown ----- */}
+				Topic:
+				{topics && topics.length > 0 ? (
+					<DropDownMenu value={topicFilter} onChange={this.handleTopicDropdown}  >
+						<MenuItem value={"all"} primaryText={"all"} />
+						{topics.map((topic, index) =>
+							{
+								return (
+									<MenuItem value={topic.name} primaryText={topic.name} />
+								);
+							}
+						)}
+					</DropDownMenu>
+					) : <p>NO TOPICS FOR DROPDOWN</p>
+				}
+
         {/* ----- opinion list ----- */}
 
         <div>
 					<h2>Opinions</h2>
+					<p> Domain: {domainFilter}</p>
+					<p> Topic: {topicFilter}</p>
 					{opinionsFiltered && opinionsFiltered.length > 0 ? (
 						<List className="opinionList">
 							{opinionsFiltered.map((opinion, index) => {
