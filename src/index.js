@@ -18,13 +18,14 @@ import './app/bootstrap-3.3.7-dist/css/bootstrap-theme.css.map'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // Needed for material-ui because onClick is not fast enough .
 // This dependency is temporary and will eventually go away
-import injectTapEventPlugin from 'react-tap-event-plugin';
 //import MyAwesomeReactComponent from './MyAwesomeReactComponent';
 
 import { Button } from 'react-bootstrap';
-// For tap events, such as right-icon menu
-import InjectTapEventPlugin from 'react-tap-event-plugin'
 
+// For tap events in material-ui
+// Inject this in index.js so it is injected only once per app load
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import InjectTapEventPlugin from 'react-tap-event-plugin'
 
 const target = document.querySelector('#root')
 

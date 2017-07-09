@@ -44,7 +44,8 @@ export default class FBWelcomeComponent2 extends React.Component {
 			MAX_INPUT_LENGTH: 150,
 			remainingInputChars: 150,
       name: '',
-			inputValue: ''
+			inputValue: '',
+			dog: "uma the dog"
     };
 
 		console.log("this.state:", this.state);
@@ -59,7 +60,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 		this.props.setDomainFilter();
     this.props.getFeedback();
 		console.log("WILL INJESCT TAP EVENT PLUGIN");
-;
+
   }
 
 	handleTopicTap(value) {
@@ -79,8 +80,11 @@ export default class FBWelcomeComponent2 extends React.Component {
 		this.props.setDomainFilter(key)
 	}
 
-	handleDropDownChange() {
-		console.log("handleDropDownChange");
+	handleDropDownChange(event, index, value) {
+		console.log("handleDropDownChange: ");
+		console.log("event:", event);
+		console.log("index:", index);
+		console.log("value:", value);
 	}
 
   render() {
@@ -122,7 +126,7 @@ export default class FBWelcomeComponent2 extends React.Component {
       <div id="returnBlock">
 
 
-					<DropDownMenu value="LAURAMYLVOE" onChange={this.handleDropDownChange}  openImmediately={true}>
+					<DropDownMenu value={3} onChange={this.handleDropDownChange}  >
 						<MenuItem value={1} primaryText="Never"/>
 						<MenuItem value={2} primaryText="EveryNight" />
 						<MenuItem value={3} primaryText="Weeknights" />

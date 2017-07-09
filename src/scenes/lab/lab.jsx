@@ -12,7 +12,7 @@ const Lab = props => (
 
   <div>
 
-   				<DropDownMenu value={"PUSSYWILLOW"} onChange={this.handleChange}  openImmediately={true}>
+   				<DropDownMenu value={1} onChange={this.handleChange}  openImmediately={true}>
 						<MenuItem value={1} primaryText="Never" />
 						<MenuItem value={2} primaryText="Every Night" />
 						<MenuItem value={3} primaryText="Weeknights" />
