@@ -86,25 +86,3 @@
 .opinionList-footer-right {
 	float: right;
 }
-
-.opinionListFooterInner {
-	  position: relative;
-  	top: 50%;
-  	transform: translateY(-50%);
-}
-
-.opinionList .typePill {
-    font-family: "Noto Sans", sans-serif;
-    font-size: .8em;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    padding: .3em 0.8em;
-    color: white;
-    border-radius: 8em;
-    text-align: center;
-    background: #818181;
-    min-width: 3em;
-    margin: 0 0.6em;
-}
