@@ -39,12 +39,13 @@ export default class FBWelcomeComponent2 extends React.Component {
 
   constructor() {
     super();
-		console.log("setting initial state");
+		console.log("CONSTRUCTOR: setting initial state");
     this.state = {
 			MAX_INPUT_LENGTH: 150,
 			remainingInputChars: 150,
       name: '',
 			inputValue: '',
+			domainFilter: 'Consumer Products',
 			dog: "uma the dog"
     };
 
@@ -57,10 +58,10 @@ export default class FBWelcomeComponent2 extends React.Component {
 
 
   componentDidMount() {
-		this.props.setDomainFilter();
-    this.props.getFeedback();
-		console.log("WILL INJESCT TAP EVENT PLUGIN");
-
+		console.log("componentDidMount");
+		//this.props.setDomainFilter();
+		// TODO: improve how we set this default domainFilter state
+    this.props.getFeedback("Consumer Produts");
   }
 
 	handleTopicTap(value) {
@@ -87,18 +88,28 @@ export default class FBWelcomeComponent2 extends React.Component {
   render() {
 		console.log("--------------------------------------------------");
 
+		console.log("RENDER");
+
 		let { domains, topics, users, opinions } = this.props.feedbackObj;
 		let { domainFilter } = this.props.domainFilterObj;
+		let { topicFilter } = this.props.topicFilterObj;
+
+		console.log("domainFilter:", domainFilter);
+		console.log("topicFilter:", topicFilter);
 
 		let topicsFiltered = [];
-		let opinionsFIltered = [];
+		let opinionsFiltered = [];
 
-		if (domains && topics && opinions) {
+		if (domains && topics && opinions && domainFilter && topicFilter) {
 			let domain0 = domains[0].name;
 			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
 			topicsFiltered = topics.filter(function (topic) {
 				return topic.domain == domainFilter;
+			});
+
+			opinionsFiltered = opinions.filter(function (opinion) {
+				return opinion.topic == topicFilter;
 			});
 		}
 
@@ -141,9 +152,9 @@ export default class FBWelcomeComponent2 extends React.Component {
 
         <div>
 					<h2>Opinions</h2>
-					{opinions && opinions.length > 0 ? (
+					{opinionsFiltered && opinionsFiltered.length > 0 ? (
 						<List className="opinionList">
-							{opinions.map((opinion, index) => {
+							{opinionsFiltered.map((opinion, index) => {
 								return (
 									<div>
 										<p className="opinionList-divider"></p>

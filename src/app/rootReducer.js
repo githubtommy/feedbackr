@@ -5,9 +5,11 @@ import { randomNameObj } from '../scenes/lab/randomName/reducers/randomNameReduc
 import { factsObj } from '../scenes/weknow/reducers/weKnowReducer.js';
 import { feedbackObj } from '../scenes/feedbackr/reducers/feedbackReducer.js';
 import { domainFilterObj } from '../scenes/feedbackr/reducers/fbhome_reducer.js';
+import { topicFilterObj } from '../scenes/feedbackr/reducers/fbhome_reducer.js';
 export default combineReducers({
 	feedbackObj,
 	domainFilterObj,
+	topicFilterObj,
 	randomNameObj,
   router: routerReducer,
   counter,
