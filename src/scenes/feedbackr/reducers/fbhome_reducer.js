@@ -1,8 +1,8 @@
 import ActionTypes from '../actions/actionTypes';
 
 const initialState = {
-	domainFilter: "all",
-	topicFilter: "all"
+	domainFilter: "All Categories",
+	topicFilter: "All Topics"
 }
 
 

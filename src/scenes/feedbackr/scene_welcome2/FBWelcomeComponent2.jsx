@@ -113,7 +113,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 			let domain0 = domains[0].name;
 			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
-			if (domainFilter === "all") {
+			if (domainFilter === "All Categories") {
 				topicsFiltered = topics
 			} else {
 				topicsFiltered = topics.filter(function (topic) {
@@ -121,14 +121,23 @@ export default class FBWelcomeComponent2 extends React.Component {
 				})
 			}
 
-			if (topicFilter === "all") {
+			if (topicFilter === "All Topics") {
 				opinionsFiltered = opinions
 			} else {
 				opinionsFiltered = opinions.filter(function (opinion) {
 					return opinion.topic == topicFilter;
 				})
 			}
+
+		// Get topics in the chosen domain
+			console.log("topicsFiltered:", topicsFiltered);
+
+
 		}
+
+
+
+
 
 
 		const rightIconElement = (
@@ -151,10 +160,9 @@ export default class FBWelcomeComponent2 extends React.Component {
       <div id="returnBlock">
 
         {/* ----- domain filter dropdown ----- */}
-				Domain:
 				{domains && domains.length > 0 ? (
 					<DropDownMenu value={domainFilter} onChange={this.handleDomainDropdown}  >
-						<MenuItem value={"all"} primaryText={"all"} />
+						<MenuItem value={"All Categories"} primaryText={"All Categories"} />
 						{domains.map((domain, index) =>
 							{
 								return (
@@ -167,11 +175,10 @@ export default class FBWelcomeComponent2 extends React.Component {
 				}
 
         {/* ----- topic filter dropdown ----- */}
-				Topic:
-				{topics && topics.length > 0 ? (
+				{topicsFiltered && topicsFiltered.length > 0 ? (
 					<DropDownMenu value={topicFilter} onChange={this.handleTopicDropdown}  >
 						<MenuItem value={"all"} primaryText={"all"} />
-						{topics.map((topic, index) =>
+						{topicsFiltered.map((topic, index) =>
 							{
 								return (
 									<MenuItem value={topic.name} primaryText={topic.name} />
