@@ -119,6 +119,55 @@ export default class FBWelcomeComponent2 extends React.Component {
 
         </div>
 
+
+
+
+        {/* ----- material dynamic ----- */}
+
+        <div>
+					<h2>DYNAMIC OPINIONS</h2>
+					{opinions && opinions.length > 0 ? (
+						<List >
+							{opinions.map((opinion, index) => {
+								return (
+									<div>
+
+									<ListItem
+										leftIcon={<ActionGrade color={pinkA200} />}
+										primaryText={
+												<div>
+													<p>{opinion.body + opinion.body + opinion.body}</p>
+													<p>{"— Elizabeth Montgomery"}</p>
+
+												</div>
+											}
+										secondaryText={
+											<div className="opinionListListItemFooter">
+												<span className="footerItem left">{opinion.topic}</span>
+												<span className="footerItem center">6 days ago</span>
+											</div>
+										}
+										rightIcon={<IconChevronRight />} />
+									</div>
+
+
+
+								);
+							})}
+
+						</List>
+
+          ) : <p>NO OPINIONS</p>}
+
+
+        </div>
+
+
+
+
+
+        {/* ----- material: earlier version ----- */}
+
         <div className="opinionList">
 					<List>
 						<div className="opinionListListItemDivider"></div>
