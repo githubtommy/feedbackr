@@ -1,10 +1,15 @@
 .titleBar {
 	background-color: #03cee8;
 	height: 44px;
+	color: white;
+	font-size: 32px;
+	padding-left: 10px;
 }
 
 .navBar {
 	background-color: white;
+	height: 100px;
+	padding-top: 20px;
 }
 
 
@@ -36,7 +41,7 @@
 }
 
 .opinionList-primary {
-	font-size: 18px !important;
+	font-size: 22px !important;
 	line-height: 28px;
 }
 

@@ -94,6 +94,26 @@ export default class FBWelcomeComponent2 extends React.Component {
 		this.props.setTopicFilter(value);
 	}
 
+	getAllTopicsMenuPhrase(domainFilter) {
+		console.log("getAllTopicsMenuPhrase");
+		let result;
+		if (domainFilter == "all") {
+			result = "All Topics"
+		} else {
+			result = "All " + domainFilter
+		}
+		return result
+
+	}
+
+
+
+	// ----------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------
+	// begin render
+	// ----------------------------------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------------------------------
+
   render() {
 		console.log("--------------------------------------------------");
 
@@ -105,18 +125,116 @@ export default class FBWelcomeComponent2 extends React.Component {
 
 		console.log("domainFilter:", domainFilter);
 		console.log("topicFilter:", topicFilter);
+		console.log("opinions:", opinions);
 
 		let topicsFiltered = [];
 		let opinionsFiltered = [];
+		let topicsInDomain = [];
+
+		let testFunc = function() {
+			console.log("TEST FUNC");
+		}
+
+
+
+		let topicIsInDomain = function (selectedTopic, domain) {
+			console.log(" -------------------------");
+			console.log("topicIsInDomain: ")
+			console.log(" -------------------------");
+			console.log("selectedTopic:", selectedTopic);
+			console.log("domain:", domain);
+			let result = false;
+			for (let i = 0; i < domain.topics.length; i++) {
+				let topic = domain.topics[i];
+				console.log("LOOP:", i);
+				console.log("topic:", topic);
+				if (topic == selectedTopic) {
+					console.log("YES, TOPIC IS IN DOMAIN");
+					result = true;
+					break;
+				} else {
+					console.log("NO TOPIC NOT IN DOMAIN");
+				}
+			}
+			console.log("result:", result);
+			return result
+		}
+
+		let getTopicsForDomain = function (domain, topics) {
+			console.log(" ***************");
+			console.log("topicIsInDomain: ")
+			console.log(" ***************");
+
+
+
+
+
+
+		}
+
+		let getAllOpinionsForDomain = function(opinions, domains, domainFilter) {
+			console.log(" --------------------------------------------------");
+			console.log("getAllOpinionsForDomain");
+			console.log(" --------------------------------------------------");
+			console.log("opinions:", opinions);
+			console.log("domains:", domains);
+			console.log("domainFilter:", domainFilter);
+			let domain = domains.filter(function (domain) {
+					return domain.name == domainFilter;
+				})
+			console.log("domain:", domain);
+			let result = []
+			for (let i = 0; i < opinions.length; i++) {
+				let opinion = opinions[i]
+				console.log("LOOP #:", i);
+				console.log("opinion:", opinion);
+				console.log("-- opinion.topic:", opinion.topic);
+				if (topicIsInDomain(opinion.topic, domain)) {
+					result.push(opinion.topic)
+				}
+			}
+			console.log("RESULT:", result);
+			return result;
+		}
+
+		let getAllowedTopics = function(topics, domainFilter) {
+			console.log("==================");
+			console.log("getAllowedTopics");
+			console.log("==================");
+			let result = []
+			for (var i = 0; i < topics.length; i++) {
+				let topic = topics[i]
+				console.log(i + ". topic:", topic);
+				if (topic.domain === domainFilter) {
+					result.push(topic)
+				}
+			}
+			return result
+		}
+
+		let topicIsAllowed = function(topicToMatch, topics) {
+			console.log("===== topicIsAllowed");
+			let result = false
+			for (var i = 0; i < topics.length; i++) {
+    		let topic = topics[i];
+				if (topic.name === topicToMatch) {
+					console.log("FOUND A MATCH:", topic.name);
+					result = true
+					break
+				}
+			}
+
+			return result
+		}
+
 
 		if (domains && topics && opinions && domainFilter && topicFilter) {
-			let domain0 = domains[0].name;
-			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
-
-			if (domainFilter === "All Categories") {
+			if (domainFilter === "all") {
 				topicsFiltered = topics
 			} else {
+
+				console.log("topicsInDomain:", topicsInDomain);
 				topicsFiltered = topics.filter(function (topic) {
 					return topic.domain == domainFilter;
 				})
@@ -125,35 +243,28 @@ export default class FBWelcomeComponent2 extends React.Component {
 			// Did the domain filter change?
 			if (domainFilter != this.domainFilterOld) {
 				console.log("SETTING TOPIC FILTER TO ALL TOPICS");
-				topicFilter = "All Topics"
+				topicFilter = "all"
 			}
 
-			if (topicFilter === "All Topics") {
-				opinionsFiltered = opinions
+			if (topicFilter == "all") {
+				if (domainFilter == "all") {
+					opinionsFiltered = opinions
+				} else {
+					let topicsAllowed = getAllowedTopics(topics, domainFilter);
+					opinionsFiltered = opinions.filter(function (opinion) {
+
+						let result = false;
+						result = topicIsAllowed(opinion.topic, topicsAllowed)
+						return result
+					})
+				}
 			} else {
 				opinionsFiltered = opinions.filter(function (opinion) {
 					return opinion.topic == topicFilter;
 				})
 			}
-
-			console.log("UPDATING domainFilterOld");
 			this.domainFilterOld = domainFilter;
-			console.log("domainFilter:", domainFilter);
-			console.log("topicFilter:", topicFilter);
-			console.log("this.domainFilterOld:", this.domainFilterOld);
-			console.log("this.topicFilterOld:", this.topicFilterOld);
-
-		// Get topics in the chosen domain
-			console.log("topicsFiltered:", topicsFiltered);
-
-
 		}
-
-
-
-
-
-
 
 		const rightIconElement = (
 			<IconButton
@@ -171,13 +282,22 @@ export default class FBWelcomeComponent2 extends React.Component {
 			</IconMenu>
 		)
 
+		// ----------------------------------------------------------------------------------------------------
+		// ----------------------------------------------------------------------------------------------------
+		// HTML
+		// ----------------------------------------------------------------------------------------------------
+		// ----------------------------------------------------------------------------------------------------
+
     return (
       <div id="returnBlock">
 
-        {/* ----- domain filter dropdown ----- */}
+      	<div className="titleBar">feedbackr</div>
+       	<div className="navBar">
+
+          {/* ----- domain filter dropdown ----- */}
 				{domains && domains.length > 0 ? (
 					<DropDownMenu value={domainFilter} onChange={this.handleDomainDropdown}  >
-						<MenuItem value={"All Categories"} primaryText={"All Categories"} />
+						<MenuItem value={"all"} primaryText={"All Categories"} />
 						{domains.map((domain, index) =>
 							{
 								return (
@@ -186,13 +306,13 @@ export default class FBWelcomeComponent2 extends React.Component {
 							}
 						)}
 					</DropDownMenu>
-					) : <p>NO DOMAINS FOR DROPDOWN</p>
+					) : null
 				}
 
         {/* ----- topic filter dropdown ----- */}
 				{topicsFiltered && topicsFiltered.length > 0 ? (
 					<DropDownMenu value={topicFilter} onChange={this.handleTopicDropdown}  >
-						<MenuItem value={"All Topics"} primaryText={"All Topics"} />
+						<MenuItem value={"all"} primaryText={this.getAllTopicsMenuPhrase(domainFilter)} />
 						{topicsFiltered.map((topic, index) =>
 							{
 								return (
@@ -204,12 +324,12 @@ export default class FBWelcomeComponent2 extends React.Component {
 					) : null
 				}
 
+       	</div>
+
         {/* ----- opinion list ----- */}
 
         <div>
-					<h2>Opinions</h2>
-					<p> Domain: {domainFilter}</p>
-					<p> Topic: {topicFilter}</p>
+					<h2 className="opinionList-title">Opinions on <span className="opinionList-title-topic">{this.getAllTopicsMenuPhrase(domainFilter)}</span></h2>
 					{opinionsFiltered && opinionsFiltered.length > 0 ? (
 						<List className="opinionList">
 							{opinionsFiltered.map((opinion, index) => {
@@ -219,7 +339,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 
 										<ListItem className="opinionList-item"
 											disabled
-											leftIcon={<IconTagFace color={pinkA200} />}
+											leftIcon={<IconTagFace color={"orangered"} />}
 											rightIconButton={rightIconMenu}
 											primaryText={
 													<div className="opinionList-primary">
@@ -245,7 +365,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 
 						</List>
 
-          ) : <p>NO OPINIONS</p>}
+          ) : null}
 
 
 
