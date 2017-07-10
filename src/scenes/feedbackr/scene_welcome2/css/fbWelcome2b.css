@@ -1,6 +1,27 @@
+.titleBar {
+	background-color: #03cee8;
+	height: 44px;
+}
+
+.navBar {
+	background-color: white;
+}
+
+
+*/ OPINION LIST */
+
+
 .opinionList {
 	font-family: "Helvetica Neue";
 	padding: 4px 0 !important;
+}
+
+.opinionList-title {
+	font-size: 24px;
+}
+
+.opinionList-title-topic {
+	color: orangered;
 }
 
 .opinionList-divider {

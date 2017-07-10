@@ -29,7 +29,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Chip from 'material-ui/Chip';
 
 //import '../css/feedbackr.css'
-import '../css/fbWelcome2b.css'
+import './css/fbWelcome2b.css'
 import '../../../app/pills.css'
 import '../../../app/fonts/kudos_fonts.css'
 //import { setDomainFilter } from '../actions/setDomainFilter'
@@ -113,12 +113,19 @@ export default class FBWelcomeComponent2 extends React.Component {
 			let domain0 = domains[0].name;
 			// let topicsFiltered = topics.filter(domain => domain == domainDefault);
 
+
 			if (domainFilter === "All Categories") {
 				topicsFiltered = topics
 			} else {
 				topicsFiltered = topics.filter(function (topic) {
 					return topic.domain == domainFilter;
 				})
+			}
+
+			// Did the domain filter change?
+			if (domainFilter != this.domainFilterOld) {
+				console.log("SETTING TOPIC FILTER TO ALL TOPICS");
+				topicFilter = "All Topics"
 			}
 
 			if (topicFilter === "All Topics") {
@@ -129,11 +136,19 @@ export default class FBWelcomeComponent2 extends React.Component {
 				})
 			}
 
+			console.log("UPDATING domainFilterOld");
+			this.domainFilterOld = domainFilter;
+			console.log("domainFilter:", domainFilter);
+			console.log("topicFilter:", topicFilter);
+			console.log("this.domainFilterOld:", this.domainFilterOld);
+			console.log("this.topicFilterOld:", this.topicFilterOld);
+
 		// Get topics in the chosen domain
 			console.log("topicsFiltered:", topicsFiltered);
 
 
 		}
+
 
 
 
@@ -177,7 +192,7 @@ export default class FBWelcomeComponent2 extends React.Component {
         {/* ----- topic filter dropdown ----- */}
 				{topicsFiltered && topicsFiltered.length > 0 ? (
 					<DropDownMenu value={topicFilter} onChange={this.handleTopicDropdown}  >
-						<MenuItem value={"all"} primaryText={"all"} />
+						<MenuItem value={"All Topics"} primaryText={"All Topics"} />
 						{topicsFiltered.map((topic, index) =>
 							{
 								return (
@@ -186,7 +201,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 							}
 						)}
 					</DropDownMenu>
-					) : <p>NO TOPICS FOR DROPDOWN</p>
+					) : null
 				}
 
         {/* ----- opinion list ----- */}
