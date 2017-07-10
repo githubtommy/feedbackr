@@ -22,7 +22,7 @@ import IconMoreVert from 'material-ui-icons/MoreVert'
 import IconMusicNote from 'material-ui-icons/MusicNote'
 import IconTagFace from 'material-ui-icons/TagFaces'
 import IconThumbDown from 'material-ui-icons/ThumbDown'
-import ActionGrade from 'material-ui/svg-icons/action/grade';
+import IconAddCircle from 'material-ui-icons/AddCircle'
 
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -50,7 +50,6 @@ export default class FBWelcomeComponent2 extends React.Component {
 
 		console.log("this.state:", this.state);
 
-		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleDomainDropdown = this.handleDomainDropdown.bind(this);
 		this.handleTopicDropdown = this.handleTopicDropdown.bind(this);
   }
@@ -68,29 +67,11 @@ export default class FBWelcomeComponent2 extends React.Component {
 		console.log("value:", value);
 	}
 
-	// onChange={e => this.setState({ name: e.target.value })}
-	handleInputChange(event) {
-		let value = event.target.value;
-		let remainingChars = this.state.MAX_INPUT_LENGTH - value.length;
-		this.setState({remainingInputChars: remainingChars});
-		this.setState({ name: event.target.value })
-	}
-
 	handleDomainDropdown(event, index, value) {
-		console.log("handleDomainDropdown: ");
-		console.log("event:", event);
-		console.log("index:", index);
-		console.log("value:", value);
-		console.log("this:", this);
 		this.props.setDomainFilter(value);
 	}
 
 	handleTopicDropdown(event, index, value) {
-		console.log("handleTopicDropdown: ");
-		console.log("event:", event);
-		console.log("index:", index);
-		console.log("value:", value);
-		console.log("this:", this);
 		this.props.setTopicFilter(value);
 	}
 
@@ -104,6 +85,10 @@ export default class FBWelcomeComponent2 extends React.Component {
 		}
 		return result
 
+	}
+
+	handleAddOpinionButton() {
+		console.log("handleAddOpinionButton");
 	}
 
 
@@ -135,72 +120,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 			console.log("TEST FUNC");
 		}
 
-
-
-		let topicIsInDomain = function (selectedTopic, domain) {
-			console.log(" -------------------------");
-			console.log("topicIsInDomain: ")
-			console.log(" -------------------------");
-			console.log("selectedTopic:", selectedTopic);
-			console.log("domain:", domain);
-			let result = false;
-			for (let i = 0; i < domain.topics.length; i++) {
-				let topic = domain.topics[i];
-				console.log("LOOP:", i);
-				console.log("topic:", topic);
-				if (topic == selectedTopic) {
-					console.log("YES, TOPIC IS IN DOMAIN");
-					result = true;
-					break;
-				} else {
-					console.log("NO TOPIC NOT IN DOMAIN");
-				}
-			}
-			console.log("result:", result);
-			return result
-		}
-
-		let getTopicsForDomain = function (domain, topics) {
-			console.log(" ***************");
-			console.log("topicIsInDomain: ")
-			console.log(" ***************");
-
-
-
-
-
-
-		}
-
-		let getAllOpinionsForDomain = function(opinions, domains, domainFilter) {
-			console.log(" --------------------------------------------------");
-			console.log("getAllOpinionsForDomain");
-			console.log(" --------------------------------------------------");
-			console.log("opinions:", opinions);
-			console.log("domains:", domains);
-			console.log("domainFilter:", domainFilter);
-			let domain = domains.filter(function (domain) {
-					return domain.name == domainFilter;
-				})
-			console.log("domain:", domain);
-			let result = []
-			for (let i = 0; i < opinions.length; i++) {
-				let opinion = opinions[i]
-				console.log("LOOP #:", i);
-				console.log("opinion:", opinion);
-				console.log("-- opinion.topic:", opinion.topic);
-				if (topicIsInDomain(opinion.topic, domain)) {
-					result.push(opinion.topic)
-				}
-			}
-			console.log("RESULT:", result);
-			return result;
-		}
-
 		let getAllowedTopics = function(topics, domainFilter) {
-			console.log("==================");
-			console.log("getAllowedTopics");
-			console.log("==================");
 			let result = []
 			for (var i = 0; i < topics.length; i++) {
 				let topic = topics[i]
@@ -213,7 +133,6 @@ export default class FBWelcomeComponent2 extends React.Component {
 		}
 
 		let topicIsAllowed = function(topicToMatch, topics) {
-			console.log("===== topicIsAllowed");
 			let result = false
 			for (var i = 0; i < topics.length; i++) {
     		let topic = topics[i];
@@ -223,10 +142,8 @@ export default class FBWelcomeComponent2 extends React.Component {
 					break
 				}
 			}
-
 			return result
 		}
-
 
 		if (domains && topics && opinions && domainFilter && topicFilter) {
 
@@ -240,11 +157,14 @@ export default class FBWelcomeComponent2 extends React.Component {
 				})
 			}
 
-			// Did the domain filter change?
+			// If domainFilter changes, set topicFilter to "all"
 			if (domainFilter != this.domainFilterOld) {
-				console.log("SETTING TOPIC FILTER TO ALL TOPICS");
 				topicFilter = "all"
 			}
+
+			//
+			// Filter opinions based on domain/topic filters
+			//
 
 			if (topicFilter == "all") {
 				if (domainFilter == "all") {
@@ -329,50 +249,72 @@ export default class FBWelcomeComponent2 extends React.Component {
         {/* ----- opinion list ----- */}
 
         <div>
-					<h2 className="opinionList-title">Opinions on <span className="opinionList-title-topic">{this.getAllTopicsMenuPhrase(domainFilter)}</span></h2>
-					{opinionsFiltered && opinionsFiltered.length > 0 ? (
-						<List className="opinionList">
-							{opinionsFiltered.map((opinion, index) => {
-								return (
-									<div>
-										<p className="opinionList-divider"></p>
 
-										<ListItem className="opinionList-item"
-											disabled
-											leftIcon={<IconTagFace color={"orangered"} />}
-											rightIconButton={rightIconMenu}
-											primaryText={
-													<div className="opinionList-primary">
-														<div className="opinionList-primary-opinion">{opinion.body}</div>
-														<FlatButton style={{ fontSize: '16px' }} primary>{"Elizabeth Montgomery, Brooklyn NY"}</FlatButton>
+        	{/* ----- opinion list header ----- */}
 
+					<div className="opinionList-header">
+
+						<span className="opinionList-header-left">
+							<h2 className="opinionList-title">Opinions on <span className="opinionList-title-topic">{this.getAllTopicsMenuPhrase(domainFilter)}</span></h2>
+						</span>
+
+						<span className="opinionList-header-right">
+							<IconButton
+								iconStyle={{ height:36,  width:36}}
+								style={{ height:72,  width:72, padding:16}}
+								onTouchTap={this.handleAddOpinionButton}
+								>
+								<IconAddCircle />
+							</IconButton>
+						</span>
+
+					</div>
+
+        	{/* ----- list ----- */}
+
+						{opinionsFiltered && opinionsFiltered.length > 0 ? (
+							<List className="opinionList">
+								{opinionsFiltered.map((opinion, index) => {
+									return (
+										<div>
+											<p className="opinionList-divider"></p>
+
+											<ListItem className="opinionList-item"
+												disabled
+												leftIcon={<IconTagFace color={"orangered"} />}
+												rightIconButton={rightIconMenu}
+												primaryText={
+														<div className="opinionList-primary">
+															<div className="opinionList-primary-opinion">{opinion.body}</div>
+															<FlatButton style={{ fontSize: '16px' }} primary>{"Elizabeth Montgomery, Brooklyn NY"}</FlatButton>
+
+														</div>
+													}
+												secondaryText={
+													<div className="opinionList-secondary">
+														<Chip className="opinionList-secondary-item left"
+															onClick={this.handleTopicTap.bind(this, opinion.topic)}>{opinion.topic}</Chip>
+														<Chip className="opinionList-secondary-item right" backgroundColor={"#ffffff"} labelColor={"#aaaaaa"}>6 days ago</Chip>
 													</div>
 												}
-											secondaryText={
-												<div className="opinionList-secondary">
-													<Chip className="opinionList-secondary-item left"
-														onClick={this.handleTopicTap.bind(this, opinion.topic)}>{opinion.topic}</Chip>
-													<Chip className="opinionList-secondary-item right" backgroundColor={"#ffffff"} labelColor={"#aaaaaa"}>6 days ago</Chip>
-												</div>
-											}
 
-										/>
-									</div>
+											/>
+										</div>
 
 
-								);
-							})}
+									);
+								})}
 
-						</List>
+							</List>
 
-          ) : null}
+						) : null}
 
 
 
 
 
 
-        </div>
+					</div>
 
       </div>
     );

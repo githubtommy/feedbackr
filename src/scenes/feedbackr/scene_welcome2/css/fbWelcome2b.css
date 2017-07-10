@@ -21,6 +21,22 @@
 	padding: 4px 0 !important;
 }
 
+.opinionList-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	border-top: 1px black solid;
+	padding-top: 6px;
+}
+
+.opinionList-header-left {
+}
+
+.opinionList-header-right {
+}
+
 .opinionList-title {
 	font-size: 24px;
 }
