@@ -9,16 +9,29 @@ import About from '../scenes/about/about.jsx'
 import Bio from '../scenes/bio/bio.jsx'
 import Lab from '../scenes/lab/lab.jsx'
 import WeKnow from '../scenes/weknow/WeKnowContainer.jsx'
+import Swiper from '../scenes/swiper/Swiper.jsx'
+
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 class App extends React.Component {
 	render() {
+
+		// let page = this.props.location.pathname.substr(1);
+
+		console.log("this:", this);
+		console.log("this.props:", this.props);
+		console.log("this.props.location:", this.props.location);
+
+
+
+
 
 		return (
 
 			<div className="container">
 				<header>
 					<br />
-					<Link to="/">Home</Link> | <Link to="/fbwelcome2">Welcome2</Link> | <Link to="/fbhome">Feedbackr Home</Link> | <Link to="/counter">Counter</Link> | <Link to="/about">About</Link> | <Link to="/bio">Bio</Link> | <Link to="/lab">Lab</Link> | <Link to="/weknow">Things We Think We Know</Link>
+					<Link to="/">Home</Link> | <Link to="/fbwelcome2">Welcome2</Link> | <Link to="/fbhome">Feedbackr Home</Link> | <Link to="/counter">Counter</Link> | <Link to="/about">About</Link> | <Link to="/bio">Bio</Link> | <Link to="/lab">Lab</Link> | <Link to="/weknow">Things We Think We Know </Link> | <Link to="/swiper">Swiper</Link>
 					<br />
 					<br />
 				</header>
@@ -32,7 +45,9 @@ class App extends React.Component {
 					<Route exact path="/bio" component={Bio} />
 					<Route exact path="/lab" component={Lab} />
 					<Route exact path="/weknow" component={WeKnow} />
+					<Route exact path="/swiper" component={Swiper} />
 				</main>
+
 			</div>
 		)
 	}
