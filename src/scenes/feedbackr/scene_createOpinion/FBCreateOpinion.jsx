@@ -35,7 +35,7 @@ import '../../../app/fonts/kudos_fonts.css'
 //import { setDomainFilter } from '../actions/setDomainFilter'
 
 
-export default class FBWelcomeComponent2 extends React.Component {
+export default class FBCreateOpinion extends React.Component {
 
   constructor() {
     super();
