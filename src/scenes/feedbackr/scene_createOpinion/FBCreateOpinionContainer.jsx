@@ -4,7 +4,7 @@ import { setDomainFilter } from '../actions/setDomainFilter';
 import { setTopicFilter } from '../actions/setTopicFilter';
 import { addDomain } from '../actions/add_domain';
 import { watchEventDomainAdded } from '../actions/event_domain_added';
-import FBWelcomeComponent2 from './FBWelcomeComponent2';
+import FBCreateOpinionComponent from './FBCreateOpinionComponent';
 import { bindActionCreators } from 'redux'
 
 function mapStateToProps(state) {
@@ -26,4 +26,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FBWelcomeComponent2)
+)(FBCreateOpinionComponent)

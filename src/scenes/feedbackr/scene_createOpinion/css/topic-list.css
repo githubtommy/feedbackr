@@ -1,0 +1,62 @@
+*/ OPINION LIST */
+
+
+.topicList {
+	font-family: "Helvetica Neue";
+	padding: 4px 0 !important;
+}
+
+.topicList-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	border-top: 1px black solid;
+	padding-top: 6px;
+}
+
+.topicList-header-left {
+}
+
+.topicList-header-right {
+}
+
+.topicList-title {
+	font-size: 24px;
+}
+
+.topicList-title-topic {
+	color: orangered;
+}
+
+.topicList-divider {
+	padding: 0;
+	margin: 0;
+	border-top: 1px gray solid;
+}
+
+.topicList-primary {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: center;
+	height: 44px;
+}
+
+.topicList-primary-item.left {
+	display: flex;
+	background-color: #red !important;
+	text-align: left !important;
+	display: inline !important;
+	width: 60%;
+}
+.topicList-primary-item.center {
+	background-color: #red !important;
+	text-align: center;
+	width: 38%;
+}
+.topicList-primary-item.right {
+	width: 20%;
+	text-align: right;
+}

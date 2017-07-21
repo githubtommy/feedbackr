@@ -1,15 +1,15 @@
 .titleBar {
-	background-color: #03cee8;
-	height: 44px;
-	color: white;
-	font-size: 32px;
+	background-color: #ededed;
+	height: 18px;
+	color: gray;
+	font-size: 12px;
 	padding-left: 10px;
 }
 
 .navBar {
 	background-color: white;
-	height: 100px;
-	padding-top: 20px;
+	height: 44px;
+	padding-top: 10px;
 }
 
 

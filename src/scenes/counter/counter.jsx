@@ -12,9 +12,10 @@ import {
 import { Button } from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+
 const Counter = props => (
   <div>
-<h1>Counter</h1>
+		<h1>Counter</h1>
     <p>Uses redux to manage user-induced state changes, both sync and async</p>
     <p>Count: {props.count}</p>
 
@@ -26,7 +27,7 @@ const Counter = props => (
 				<Button bsStyle="info" onClick={props.decrementAsync} disabled={props.isDecrementing}>Decrement Async</Button>
 			</div>
 		</p>
-    <p><Button bsStyle="warning" onClick={() => props.changePage()}>Go to about page via redux</Button></p>
+    <p><Button bsStyle="warning" onClick={() => this.props.changePage()}>Go to about page via redux</Button></p>
     <br />
     <br />
     <br />
@@ -44,7 +45,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   incrementAsync,
   decrement,
   decrementAsync,
-  changePage: () => push('/about-us')
+  changePage: () => push('/about')
 }, dispatch)
 
 export default connect(

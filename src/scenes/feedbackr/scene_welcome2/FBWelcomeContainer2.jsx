@@ -6,6 +6,7 @@ import { addDomain } from '../actions/add_domain';
 import { watchEventDomainAdded } from '../actions/event_domain_added';
 import FBWelcomeComponent2 from './FBWelcomeComponent2';
 import { bindActionCreators } from 'redux'
+import { push } from 'react-router-redux'
 
 function mapStateToProps(state) {
 	console.log("FBHomeContainer: mapStateToProps: ", state);
