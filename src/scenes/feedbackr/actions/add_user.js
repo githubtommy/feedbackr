@@ -6,20 +6,23 @@ console.log("LOADED: add_USER.js");
 
 // firebase.database.ServerValue.TIMESTAMP
 
-export function addUser(content) {
-	console.log("addUser: ", content);
+export function addUser(nameFirst, nameLast, location) {
+	console.log("addUser: ", user);
 	let date = firebase.database.ServerValue.TIMESTAMP;
 	date = new Date();
-	console.log("date:", date);
+	let user = {
+		name_first: nameFirst,
+		name_last: nameLast,
+		location: location,
+		date: date,
+		opinions_count: 0
+	}
   return dispatch => {
     dispatch(addUserRequestedAction());
-    const factsRef = database.ref('/facts');
-    factsRef.push({
-      content,
-			date
-    })
+    const usersRef = database.ref('/users');
+    usersRef.push(user)
     .then(() => {
-      dispatch(addUserFulfilledAction({ content }));
+      dispatch(addUserFulfilledAction(user));
     })
     .catch((error) => {
       dispatch(addUserRejectedAction());

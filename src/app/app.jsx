@@ -5,6 +5,7 @@ import Home from '../scenes/home/home.jsx'
 import FBWelcome from '../scenes/feedbackr/scene_welcome/FBWelcomeContainer.jsx'
 import FBWelcome2 from '../scenes/feedbackr/scene_welcome2/FBWelcomeContainer2.jsx'
 import FBCreateOpinionContainer from '../scenes/feedbackr/scene_createOpinion/FBCreateOpinionContainer.jsx'
+import FBLoginContainer from '../scenes/feedbackr/scene_login/FBLoginContainer.jsx'
 import FBHome from '../scenes/feedbackr/scene_home/FBHomeContainer.jsx'
 import Counter from '../scenes/counter/Counter.jsx'
 import About from '../scenes/about/about.jsx'
@@ -30,6 +31,17 @@ class App extends React.Component {
 
 	constructor() {
 		super()
+		this.state = {
+			user: null
+    }
+
+		this.keepUser = this.keepUser.bind(this);
+	}
+
+	keepUser(user) {
+		console.log("keepUser");
+		console.log("user:", user);
+		this.setState({user: user})
 	}
 
 	render() {
@@ -61,12 +73,16 @@ class App extends React.Component {
 		return (
 
 			<div className="container">
-				<NavTopContainer />
+				<NavTopContainer user={this.state.user}/>
 				<main>
+
+
 					<Route exact path="/" component={FBWelcome2} />
-					<Route exact path="/fbwelcome2" component={FBWelcome2} />
+					<Route exact path="/fb-login" component={(props) => <FBLoginContainer {...props} user={this.state.user} keepUser={this.keepUser}/>} />
+					<Route exact path="/fbwelcome2" component={(props) => <FBWelcome2 {...props} user={this.state.user}/>} />
+					<Route exact path="/fb-create-opinion" component={(props) => <FBCreateOpinionContainer {...props} user={this.state.user}/>} />
+
 					<Route exact path="/fbhome" component={FBHome} />
-					<Route exact path="/fb-create-opinion" component={FBCreateOpinionContainer} />
 					<Route exact path="/counter" component={Counter} />
 					<Route exact path="/about" component={About} />
 					<Route exact path="/bio" component={Bio} />

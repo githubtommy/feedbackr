@@ -41,6 +41,54 @@ export function feedbackObj(state = {}, action) {
       return newState;
     }
 
+		case ActionTypes.ADD_TOPIC_REQUESTED: {
+      return Object.assign({}, state, {
+        inProgress: true,
+        error: '',
+        success: ''
+      });
+		}
+
+    case ActionTypes.ADD_TOPIC_REJECTED: {
+      return Object.assign({}, state, {
+        inProgress: false,
+        error: 'Error in adding feedback',
+      });
+    }
+
+    case ActionTypes.ADD_TOPIC_FULFILLED: {
+      const newState = Object.assign({}, state, {
+        inProgress: false,
+        success: 'Added feedback'
+      });
+      return newState;
+    }
+
+		case ActionTypes.ADD_USER_REQUESTED: {
+      return Object.assign({}, state, {
+        inProgress: true,
+        error: '',
+        success: ''
+      });
+		}
+
+    case ActionTypes.ADD_USER_REJECTED: {
+      return Object.assign({}, state, {
+        inProgress: false,
+        error: 'Error in adding feedback',
+      });
+    }
+
+    case ActionTypes.ADD_USER_FULFILLED: {
+      const newState = Object.assign({}, state, {
+        inProgress: false,
+        success: 'Added feedback'
+      });
+      return newState;
+    }
+
+
+
     case ActionTypes.ADD_FEEDBACK_REQUESTED: {
       return Object.assign({}, state, {
         inProgress: true,
@@ -48,12 +96,14 @@ export function feedbackObj(state = {}, action) {
         success: ''
       });
     }
+
     case ActionTypes.ADD_FEEDBACK_REJECTED: {
       return Object.assign({}, state, {
         inProgress: false,
         error: 'Error in adding feedback',
       });
     }
+
     case ActionTypes.ADD_FEEDBACK_FULFILLED: {
       const newState = Object.assign({}, state, {
         inProgress: false,
@@ -61,6 +111,7 @@ export function feedbackObj(state = {}, action) {
       });
       return newState;
     }
+
     case ActionTypes.FEEDBACK_ADDED: {
       const newState = Object.assign({}, state);
       newState.feedback = newState.feedback || [];

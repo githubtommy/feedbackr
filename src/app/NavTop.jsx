@@ -13,11 +13,12 @@ import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
 import './navtop.css'
 
 export default class NavTop extends React.Component {
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.state = {
       redirectUrl: '',
-			didRedirect: false
+			didRedirect: false,
+			userName: props.name_first + " " + props.name_last
     };
   }
 
@@ -31,16 +32,29 @@ export default class NavTop extends React.Component {
 			this.props.goRead()
 		} else if (url== "/fb-create-opinion") {
 			this.props.goCreate()
+		} else if (url== "/fb-login") {
+			this.props.goLogin("hello")
 		}
 	}
+
+	getUserName = function() {
+		console.log("getUserName");
+		console.log("this.props:", this.props);
+		return (this.props.user ? this.props.user.nameFirst + " " + this.props.user.nameLast : "Joe Blow")
+	}
+
+
 
 
 	render() {
 
 		console.log("--------------------------------------------------");
+		console.log("--------------------------------------------------");
+		console.log("--------------------------------------------------");
 
 		console.log("RENDER");
-		console.log("this.state.redirectUrl:", this.state.redirectUrl);
+		console.log("this.props.user:", this.props.user);
+		console.log("this.state.userName:", this.state.userName);
 
 		// This works, but then NavTop is no longer rendered at the top of App
 //		if (this.state.didRedirect) {
@@ -53,7 +67,6 @@ export default class NavTop extends React.Component {
 //			return <Redirect push to={this.state.redirectUrl} />;
 //		}
 //		console.log("WILL NOT REDIRECT");
-
 
 		const rightIconElement = (
 			<IconButton
@@ -79,10 +92,13 @@ export default class NavTop extends React.Component {
 				iconClassNameRight="muidocs-icon-navigation-expand-more"
 				className="topbar"
 				>
-					<FlatButton className="topbar" label="read" onClick={this.handleNavButton.bind(this, "/fbwelcome2")} />
-					<FlatButton className="topbar" label="add" onClick={this.handleNavButton.bind(this, "/fb-create-opinion")} />
+
+					<FlatButton className="topbar" label="Read" onClick={this.handleNavButton.bind(this, "/fbwelcome2")} />
+					<FlatButton className="topbar" label="Add" onClick={this.handleNavButton.bind(this, "/fb-create-opinion")} />
+					<FlatButton className="topbar" label="Login" onClick={this.handleNavButton.bind(this, "/fb-login")} />
 			</AppBar>
 
+				<p>Hello {this.state.userName} </p>
 				<div className="navBar">
 					<Link to="/">Home</Link> | <Link to="/fbwelcome2">Welcome2</Link> | <Link to="/fbhome">Feedbackr Home</Link> | <Link to="/counter">Counter</Link> | <Link to="/about">About</Link> | <Link to="/bio">Bio</Link> | <Link to="/lab">Lab</Link> | <Link to="/weknow">Things We Think We Know </Link> | <Link to="/swiper">Swiper</Link>
 				</div>

@@ -6,20 +6,21 @@ console.log("LOADED: add_TOPIC.js");
 
 // firebase.database.ServerValue.TIMESTAMP
 
-export function addTopic(content) {
-	console.log("addTopic: ", content);
+export function addTopic(topicValue, domainName) {
+	console.log("addTopic: ")
+	console.log("topicValue:", topicValue);
+	console.log("domainName:", domainName);
 	let date = firebase.database.ServerValue.TIMESTAMP;
 	date = new Date();
 	console.log("date:", date);
   return dispatch => {
     dispatch(addTopicRequestedAction());
-    const factsRef = database.ref('/facts');
-    factsRef.push({
-      content,
-			date
-    })
+    const topicsRef = database.ref('/topics');
+		const topic = {name: topicValue, domain: domainName}
+		console.log("topic:", topic);
+    topicsRef.push(topic)
     .then(() => {
-      dispatch(addTopicFulfilledAction({ content }));
+      dispatch(addTopicFulfilledAction({ topicValue, domainName }));
     })
     .catch((error) => {
       dispatch(addTopicRejectedAction());
@@ -40,9 +41,9 @@ function addTopicRejectedAction() {
   }
 }
 
-function addTopicFulfilledAction(fact) {
+function addTopicFulfilledAction(topic) {
   return {
     type: ActionTypes.ADD_TOPIC_FULFILLED,
-    fact
+    topic
   };
 }

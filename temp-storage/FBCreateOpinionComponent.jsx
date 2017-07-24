@@ -4,16 +4,16 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import DomainDropdown from '../parts/DomainDropdown.jsx'
 import TopicDropdown from '../parts/TopicDropdown.jsx'
-import OpinionHeader from './OpinionHeader.jsx'
-import OpinionList from './OpinionList.jsx'
+import TopicHeader from './TopicHeader.jsx'
+import TopicList from './TopicList.jsx'
 
-import './css/fbWelcome2b.css'
+import '../scene_welcome2/css/fbWelcome2b.css'
 import '../../../app/pills.css'
 import '../../../app/fonts/kudos_fonts.css'
 import DataHelper from '../helpers/DataHelper.jsx'
 
 
-export default class FBWelcomeComponent2 extends React.Component {
+export default class FBCreateOpinionComponent extends React.Component {
 
   constructor() {
     super();
@@ -44,7 +44,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 	}
 
 	handleAddOpinionButton(event) {
-		this.setState({redirect: true, redirectUrl: "/fb-create-opinion"});
+		this.setState({redirect: true, redirectUrl: "/go-create-opinion"});
 	}
 
 	testFunc() {
@@ -55,7 +55,7 @@ export default class FBWelcomeComponent2 extends React.Component {
 		console.log("--------------------------------------------------");
 
 		console.log("RENDER");
-		console.log("this.props.user:", this.props.user);
+		console.log("this.state.redirectUrl:", this.state.redirectUrl);
 
 		if (this.state.redirect) {
 			return <Redirect push to={this.state.redirectUrl} />;
@@ -119,13 +119,6 @@ export default class FBWelcomeComponent2 extends React.Component {
 			this.domainFilterOld = domainFilter;
 		}
 
-		console.log("RETURN BLOCK");
-		console.log("opinions:", opinions);
-		console.log("domains:", domains);
-		console.log("topics:", topics);
-		console.log("domainFilter:", domainFilter);
-		console.log("topicFilter:", topicFilter);
-
 		return (
 			<div id="returnBlock">
 
@@ -135,26 +128,21 @@ export default class FBWelcomeComponent2 extends React.Component {
 							domains={domains}
 							domainFilter={domainFilter}
 							changeHandler={this.handleDomainDropdown} />
-						<TopicDropdown
-							topicsFiltered={topicsFiltered}
-							topicFilter={topicFilter}
-							domainFilter={domainFilter}
-							changeHandler={this.handleTopicDropdown} />
 					</div>
 				: null}
 
 				{(opinionsFiltered && opinionsFiltered.length > 0) ?
 					<div>
 
-						<OpinionHeader
+						<TopicHeader
 							domainFilter={domainFilter}
 							topicFilter={topicFilter}
 							domains={domains}
 							addOpinionButtonHandler={this.handleAddOpinionButton}
 						/>
 
-						<OpinionList
-							opinionsFiltered={opinionsFiltered}
+						<TopicList
+							topicsFiltered={topicsFiltered}
 							handleTopicTap={this.handleTopicTap}
 							/>
 

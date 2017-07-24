@@ -14,8 +14,8 @@ import IconMenu from 'material-ui/IconMenu';
 import './css/topic-list.css'
 
 const TopicList = (props) => {
-	let topicsFiltered = props.topicsFiltered
-	let handleTopicTap = props.handleTopicTap
+	let domains = props.domains
+	let handleDomainTap = props.handleDomainTap
 
 	const muiStyles = {
       chip: {
@@ -54,7 +54,7 @@ const TopicList = (props) => {
 	const rightChip = (
 		<Chip
 			style={muiStyles.chip}
-			onClick={handleTopicTap.bind(null, "HANSI")}
+			onClick={handleDomainTap.bind(null, "HANSI")}
 			>
 			{"HANSI"}
 		</Chip>
@@ -62,33 +62,34 @@ const TopicList = (props) => {
 	)
 
 	return (
+		<div>
+			<h2>Choose a category</h2>
+			<List className="topicList">
+				{domains.map((domain, index) => {
+					return (
+						<div>
+							<ListItem
+								id="myListItem"
+								style={muiStyles.listItem}
+								onClick={handleDomainTap.bind(null, domain)}
 
-		<List className="topicList">
-			{topicsFiltered.map((topic, index) => {
-				return (
-					<div>
-						<p className="topicList-divider"></p>
+								rightIconButton={rightChip}
+								primaryText={
+										<div className="topicList-primaryXXX">
+											<span className="topicList-primary-item left">{domain.name}</span>
+											<span className="topicList-primary-item center">
 
-						<ListItem
-							id="myListItem"
-							style={muiStyles.listItem}
-							onClick={handleTopicTap.bind(null, topic)}
-							rightIconButton={rightChip}
-							primaryText={
-									<div className="topicList-primaryXXX">
-										<span className="topicList-primary-item left">{topic.name}</span>
-										<span className="topicList-primary-item center">
+											</span>
 
-										</span>
+										</div>
+									}
 
-									</div>
-								}
-
-						/>
-					</div>
-				);
-			})}
-		</List>
+							/>
+						</div>
+					);
+				})}
+			</List>
+		</div>
 
 	)
 }

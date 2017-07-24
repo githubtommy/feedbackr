@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
 import { getFeedback } from '../actions/get_feedback';
+import { addTopic } from '../actions/add_topic';
+import { addOpinion } from '../actions/add_opinion';
+import { addUser } from '../actions/add_user';
 import { setDomainFilter } from '../actions/setDomainFilter';
 import { setTopicFilter } from '../actions/setTopicFilter';
 import { addDomain } from '../actions/add_domain';
@@ -18,6 +21,9 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
 	getFeedback,
+	addTopic,
+	addOpinion,
+	addUser,
 	setDomainFilter,
 	setTopicFilter,
 	addDomain

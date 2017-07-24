@@ -6,20 +6,22 @@ console.log("LOADED: add_OPINION.js");
 
 // firebase.database.ServerValue.TIMESTAMP
 
-export function addOpinion(content) {
-	console.log("addOpinion: ", content);
+export function addOpinion(opinionValue, topicName) {
 	let date = firebase.database.ServerValue.TIMESTAMP;
 	date = new Date();
 	console.log("date:", date);
   return dispatch => {
     dispatch(addOpinionRequestedAction());
-    const factsRef = database.ref('/facts');
-    factsRef.push({
-      content,
-			date
-    })
+    const opinionsRef = database.ref('/opinions');
+		const opinion = {
+			name: opinionValue,
+			topic: topicName,
+			date: date,
+			type: "suggestion",
+			user: "1CYPHxqH3kWHrbfvaKYcFmLf5LF3"}
+    opinionsRef.push(opinion)
     .then(() => {
-      dispatch(addOpinionFulfilledAction({ content }));
+      dispatch(addOpinionFulfilledAction(opinion));
     })
     .catch((error) => {
       dispatch(addOpinionRejectedAction());
