@@ -64,7 +64,7 @@ export default class WeKnowComponent extends React.Component {
             <div className="row">
               <div className="col-xs-10 col-xs-offset-1">
               	<br />
-               	<p>I think I know that...</p>
+               	<p>Pick a category and share something you know about it. Your contribution will be saved to the cloud.</p>
                 <textarea
                  	className="form-control input-lg"
                  	rows="3"

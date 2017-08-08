@@ -16,6 +16,7 @@ import IconMenu from 'material-ui/IconMenu';
 const OpinionList = (props) => {
 	let opinionsFiltered = props.opinionsFiltered
 	let handleTopicTap = props.handleTopicTap
+	console.log("opinionsFiltered:", opinionsFiltered);
 
 	const rightIconElement = (
 		<IconButton

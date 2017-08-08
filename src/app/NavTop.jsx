@@ -55,6 +55,13 @@ export default class NavTop extends React.Component {
 		console.log("RENDER");
 		console.log("this.props.user:", this.props.user);
 		console.log("this.state.userName:", this.state.userName);
+		console.log("this.props.userReducer:", this.props.userReducer);
+
+		const user = this.props.userReducer.user
+		let userName = "[please log in to set a user name]"
+		if (user) {
+			userName = user.name_first + " " + user.name_last
+		}
 
 		// This works, but then NavTop is no longer rendered at the top of App
 //		if (this.state.didRedirect) {
@@ -97,10 +104,10 @@ export default class NavTop extends React.Component {
 					<FlatButton className="topbar" label="Add" onClick={this.handleNavButton.bind(this, "/fb-create-opinion")} />
 					<FlatButton className="topbar" label="Login" onClick={this.handleNavButton.bind(this, "/fb-login")} />
 			</AppBar>
-
-				<p>Hello {this.state.userName} </p>
+				<br />
+				<p><i>Hello there {userName} </i></p>
 				<div className="navBar">
-					<Link to="/">Home</Link> | <Link to="/fbwelcome2">Welcome2</Link> | <Link to="/fbhome">Feedbackr Home</Link> | <Link to="/counter">Counter</Link> | <Link to="/about">About</Link> | <Link to="/bio">Bio</Link> | <Link to="/lab">Lab</Link> | <Link to="/weknow">Things We Think We Know </Link> | <Link to="/swiper">Swiper</Link>
+					<b>Scratchpads: </b> <Link to="/about">About</Link> | <Link to="/bootstrap">Bootstrap</Link> | <Link to="/material">MaterialUI</Link> | <Link to="/weknow">Firebase </Link>
 				</div>
 
 			</div>

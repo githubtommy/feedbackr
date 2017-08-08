@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+
+
 import UserList from './UserList.jsx'
 import FlatButton from 'material-ui/FlatButton';
 import IconChevronLeft from 'material-ui-icons/ChevronLeft';
@@ -27,6 +29,7 @@ export default class FBLogin extends React.Component {
 
 	componentDidMount() {;
     this.props.getFeedback();
+		this.props.getUser();
   }
 
 	handleExitLogin() {
@@ -34,9 +37,10 @@ export default class FBLogin extends React.Component {
 	}
 
 	handleUserSelect(user) {
-		console.log("handleUserSelect");
-		console.log("user:", user);
+		console.log("handleUserSelect")
+		console.log("user:", user)
 		this.props.keepUser(user)
+		this.props.setUser(user)
 	}
 
   render() {
@@ -56,13 +60,8 @@ export default class FBLogin extends React.Component {
 			<div id="returnBlock">
 				{ (users && users.length > 0) ?
 					<div>
-						<FlatButton
-							label="Exit"
-							labelPosition="after"
-							primary="true"
-							onClick={this.handleExitLogin} />
 
-							Fake Login: Choose a user
+							Fake Login: Pick the user you will pretend to be
 
 						<UserList
 							users={users}

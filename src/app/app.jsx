@@ -9,8 +9,8 @@ import FBLoginContainer from '../scenes/feedbackr/scene_login/FBLoginContainer.j
 import FBHome from '../scenes/feedbackr/scene_home/FBHomeContainer.jsx'
 import Counter from '../scenes/counter/Counter.jsx'
 import About from '../scenes/about/about.jsx'
-import Bio from '../scenes/bio/bio.jsx'
-import Lab from '../scenes/lab/lab.jsx'
+import Bootstrap from '../scenes/bootstrap/bootstrap.jsx'
+import Material from '../scenes/material/material.jsx'
 import WeKnow from '../scenes/weknow/WeKnowContainer.jsx'
 import NavTopContainer from './NavTopContainer.jsx'
 
@@ -85,10 +85,9 @@ class App extends React.Component {
 					<Route exact path="/fbhome" component={FBHome} />
 					<Route exact path="/counter" component={Counter} />
 					<Route exact path="/about" component={About} />
-					<Route exact path="/bio" component={Bio} />
-					<Route exact path="/lab" component={Lab} />
+					<Route exact path="/bootstrap" component={Bootstrap} />
+					<Route exact path="/material" component={Material} />
 					<Route exact path="/weknow" component={WeKnow} />
-					<Route exact path="/swiper" component={Swiper} />
 				</main>
 
 			</div>

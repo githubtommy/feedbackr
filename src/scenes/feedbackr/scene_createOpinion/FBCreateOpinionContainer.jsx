@@ -9,13 +9,16 @@ import { addDomain } from '../actions/add_domain';
 import { watchEventDomainAdded } from '../actions/event_domain_added';
 import FBCreateOpinionComponent from './FBCreateOpinionComponent';
 import { bindActionCreators } from 'redux'
+//import userReducer from './user/userState'
+
 
 function mapStateToProps(state) {
 	console.log("FBCreateOpinionContainer: mapStateToProps: ", state);
   return {
 		feedbackObj: state.feedbackObj,
 		domainFilterObj: state.domainFilterObj,
-		topicFilterObj: state.topicFilterObj
+		topicFilterObj: state.topicFilterObj,
+		userReducer: state.userReducer
   };
 }
 

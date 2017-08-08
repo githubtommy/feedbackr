@@ -39,7 +39,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getUser
 }, dispatch)
 
 export default connect(

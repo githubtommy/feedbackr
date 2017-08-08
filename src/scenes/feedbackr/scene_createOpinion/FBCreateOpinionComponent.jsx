@@ -103,11 +103,12 @@ export default class FBCreateOpinionComponent extends React.Component {
 		console.log("topicValue:", topicValue);
 		console.log("domainName:", domainName);
 		console.log("this.props:", this.props);
-		this.props.addTopic(topicValue, domainName);
+		const user = this.props.userReducer.user
+		this.props.addTopic(topicValue, domainName, user);
 	}
 
 	addOpinion(opinionValue, topicName) {
-		console.log("addTopic");
+		console.log("addOpinion");
 		console.log("opinionValue:", opinionValue);
 		console.log("topicName:", topicName);
 		console.log("this.props:", this.props);
@@ -156,6 +157,19 @@ export default class FBCreateOpinionComponent extends React.Component {
 		console.log("RENDER");
 
 		console.log("this.props.user:", this.props.user);
+		let user
+		let userName
+		if (this.props.userReducer) {
+		 user = this.props.userReducer.user
+			userName = "pending"
+			if (user) {
+				userName = user.name_first + " " + user.name_last
+			}
+
+		}
+
+		console.log("user:", user);
+		console.log("userName:", userName);
 
 		if (this.state.redirect) {
 			return <Redirect push to={this.state.redirectUrl} />;

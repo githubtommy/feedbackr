@@ -6,17 +6,21 @@ console.log("LOADED: add_TOPIC.js");
 
 // firebase.database.ServerValue.TIMESTAMP
 
-export function addTopic(topicValue, domainName) {
+export function addTopic(topicValue, domainName, user) {
 	console.log("addTopic: ")
 	console.log("topicValue:", topicValue);
 	console.log("domainName:", domainName);
+	console.log("user:", user);
 	let date = firebase.database.ServerValue.TIMESTAMP;
 	date = new Date();
 	console.log("date:", date);
   return dispatch => {
     dispatch(addTopicRequestedAction());
     const topicsRef = database.ref('/topics');
-		const topic = {name: topicValue, domain: domainName}
+		const topic = {
+			name: topicValue,
+			domain: domainName
+		}
 		console.log("topic:", topic);
     topicsRef.push(topic)
     .then(() => {

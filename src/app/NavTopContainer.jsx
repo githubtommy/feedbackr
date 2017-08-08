@@ -3,15 +3,16 @@ import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import NavTop from './NavTop.jsx'
+import userReducer from './user/userState'
 
 import { Button } from 'react-bootstrap';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => {
 	return {
-		userObj: state.userObj
+		userReducer: state.userReducer
 	}
-})
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => bindActionCreators({
 	goHome: () => push("/"),
